@@ -4,7 +4,6 @@ title : CV
 permalink: /cv/
 ---
 
-<object data="/_assets/cv/calvin_cv.pdf" width="1000" height="1000" type='application/pdf'></object>
-
+you can [download pdf](https://calvinnsmith.github.io/_assets/cv/calvin_cv.pdf) here.
 
 
