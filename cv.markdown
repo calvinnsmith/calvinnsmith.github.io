@@ -6,4 +6,4 @@ permalink: /cv/
 
 
 
-<a href="https://github.com/calvinnsmith/calvinnsmith.github.io/blob/main/_assets/cv/calvin_cv.pdf" target="_blank">PDF.</a>
+<embed src="https://calvinnsmith.github.io/calvin_cv.pdf" width="100%" height="850px"/>
