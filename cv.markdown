@@ -6,7 +6,4 @@ permalink: /cv/
 
 
 
-<embed src="https://calvinnsmith.github.io/calvin_cv.pdf" width="100%" height="850px"/>
-
-
-<a href="https://calvinnsmith.github.io/calvin_cv.pdf">mypdf</a>
+You can view my cv <a href="https://calvinnsmith.github.io/assets/calvin/calvin_cv.pdf">here</a>.
