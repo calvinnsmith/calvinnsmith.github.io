@@ -1,31 +1,20 @@
 ---
 layout: post
-title:  "Welcome to my blog!"
+title:  "Hello, World! Introducing Myself and My Data Science Blog"
 date:   2023-02-15 14:31:20 +0100
 categories: jekyll update
+featured_image: images/data_science.png
+
 ---
+<br/>
+Hey there! 
 
+Welcome to my personal website/blog! My name is Calvin and I'm an aspiring data scientist who loves everything related to machine learning, data science, AI, and statistics.
 
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+This blog is my space to share my thoughts, insights, and experiences in the data science field with all of you. Whether you're a data science enthusiast, a student, or a fellow data scientist, I hope you'll find something useful and interesting here.
 
-Jekyll requires blog post files to be named according to the following format:
+On this website, you'll find blog posts that cover technical topics, as well as my take on the latest trends and developments in the industry. I'll also share tips and tricks that I've picked up along the way, so stay tuned for that!
 
-`YEAR-MONTH-DAY-title.MARKUP`
+Oh, and did I mention that this website is also a space for me to showcase my resume and market myself to future employers? That's right! I'm excited to connect with others who are passionate about data science and to explore new career opportunities.
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
-
-Jekyll also offers powerful support for code snippets:
-
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
-
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+I'm thrilled to have you here and I can't wait to share my journey in data science with all of you. If you have any questions or feedback, please don't hesitate to drop a comment or send me a message. Let's geek out on data science together!
