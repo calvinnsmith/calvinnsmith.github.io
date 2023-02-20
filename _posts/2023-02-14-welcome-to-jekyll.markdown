@@ -3,7 +3,7 @@ layout: post
 title:  "Hello, World! Introducing Myself and My Data Science Blog"
 date:   2023-02-15 14:31:20 +0100
 categories: jekyll update
-featured_image: calvinnsmith.github.io/assets/images/data_science.png
+featured_image: /images/data_science.png
 
 ---
 <br/>
