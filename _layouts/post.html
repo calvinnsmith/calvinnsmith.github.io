@@ -17,11 +17,13 @@ layout: default
       {%- endif -%}</p>
   </header>
 
+
   {% if page.featured_image %}
 <div class="featured-image">
   <img src="{{ '/assets/' | append: page.featured_image | relative_url }}" />
 </div>
 {% endif %}
+
 
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}

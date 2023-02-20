@@ -3,7 +3,7 @@ layout: post
 title:  "Hello, World! Introducing Myself and My Data Science Blog"
 date:   2023-02-15 14:31:20 +0100
 categories: jekyll update
-featured_image: images/data_science.png
+featured_image: calvinnsmith.github.io/assets/images/data_science.png
 
 ---
 <br/>
@@ -18,3 +18,5 @@ On this website, you'll find blog posts that cover technical topics, as well as 
 Oh, and did I mention that this website is also a space for me to showcase my resume and market myself to future employers? That's right! I'm excited to connect with others who are passionate about data science and to explore new career opportunities.
 
 I'm thrilled to have you here and I can't wait to share my journey in data science with all of you. If you have any questions or feedback, please don't hesitate to drop a comment or send me a message. Let's geek out on data science together!
+
+  
