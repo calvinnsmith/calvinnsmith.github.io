@@ -2,8 +2,8 @@
 layout: post
 title:  "Let's talk about Data Science, Machine Learning and AI"
 date:   2023-02-15 14:31:20 +0100
-cate) gories: jekyll update
----9
+categories: jekyll update
+---
 The multiverse of data science, machine learning and AI can be difficult to navigate. The fields are fundamnetally different (even though they overlap in a lot of ways)
 but are often used interchangeably. In this blog post I will try to explain the differences between data science, machine learning and AI and how they relate to each other.
 
