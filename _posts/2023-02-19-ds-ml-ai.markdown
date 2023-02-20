@@ -1,0 +1,20 @@
+---
+layout: post
+title:  "Let's talk about Data Science, Machine Learning and AI"
+date:   2023-02-15 14:31:20 +0100
+cate) gories: jekyll update
+---9
+The multiverse of data science, machine learning and AI can be difficult to navigate. The fields are fundamnetally different (even though they overlap in a lot of ways)
+but are often used interchangeably. In this blog post I will try to explain the differences between data science, machine learning and AI and how they relate to each other.
+
+#### Data Science
+
+**Data Science** is a subject or field based on mathematics, statistics and computer science. It is essentially the field that explores how statistics and computer science
+can be combined to gain insights, draw conclusions and learn from data. 
+
+#### Machine Learning
+
+**Machine Learning** is the concept of using **data** and a **model** to learn the relationships of the data. 
+
+#### AI
+
