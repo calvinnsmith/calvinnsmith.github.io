@@ -1,0 +1,137 @@
+---
+layout: post
+title:  "What is ChatGPT and how can you use it?"
+date:   2023-02-15 14:31:20 +0100
+categories: jekyll update
+featured_image: /images/open_ai.png
+---
+
+<b/>
+
+ChatGPT is an advanced conversational AI developed by the the company OpenAI. It launched in November 2022 and was built using
+OpenAI's GPT-3 large language model and has been fine-tuned using supervised learning and reinforcement learning. In this blog post I will cover topics and try to answers questions such as:
+
+- What is chatGPT?
+
+- What makes chatGPT different from other conversational AIs?
+
+- What can chatGPT actually do?
+
+- How is chatGPT built and trained?
+
+- What are the flaws and limitations of chatGPT? 
+
+### What is chatGPT?
+
+### What makes chatGPT different from other conversational AIs?
+
+### What can chatGPT actually do?
+
+### How was chatGPT built and trained?
+
+### What are the flaws and limitations of chatGPT?
+
+
+
+
+
+Introduction:
+- What is chatGpt?
+ChatGPT is an advanced conversational AI developed by OpenAI and launched in November 2022. It was built with OpenAI's GPT-3 family
+of large language models and has been fine-tuned using supervised learning and reinforcement learning.
+
+- What makes ChatGPT different from other chatbots?
+Its ability to carry full-fledged conversations with the user. Apart from being able to analyze your questions and respond to them, it can
+remember your previous responses and answer with natural every day language. Having a conversation with ChatGPT truly feels like a human conversation.
+
+
+- What can chatGPT do?
+ChatGPT is a powerful conversational AI. According to OpenAI it can answer followup questions, admit its mistakes, challenge incorrect premises and reject inappropriate requests.
+
+More specifically chatGPT can be used to:
+
+- Answer questions and follow up questions.
+- Summarize text.
+- Proof-read text.
+- Generate drafts
+- Format text.
+- Explain concepts from virtually any domain.
+- Explain code.
+- Write code.
+- Find errors in code.
+ etc.....
+
+
+Theory:
+
+Generative AI
+
+- How is chatGPT built?
+
+using GPT-3.5 (Generative Pre-Trained Transformers)
+
+what is GPT-3?
+
+-its an autoregressive language model developed by OpenAI
+-trained on a dataset of 45TB of text data (wikipedia, books, webpages) (300 billion tokens)
+- 175 billion parameters
+-trained using next word prediction
+- 96 transformer decoder layers
+
+
+
+
+what is Transformers?
+- Its a type of neural network architecture
+- Three things that make transformers work very well:
+  - positionl encoding
+  - attention
+  - self-attention
+
+
+
+- How was chatGPT trained?
+
+using RLHF (Reinforcement Learning Through Human Feedback)
+
+Chat GPT can attend to about 3000 words of prior context (this is its memory)
+
+1) Generative pre-training (GPT-3)
+Using next word predictions
+This is where we build the foundation and allow the model to learn sophisticated probabilistic dependencies between words, sentences and paragraph.
+
+2) Supervised fine-tuning
+Alignment problem, the previous step is designed to complete user input sentence, not answer or explain.
+
+This done by humans acting as both the user and chatbot to provide data for the model.
+
+Each training example consists of a particular conversation history and the next response.
+Train the model by making it 
+
+
+3) RLHF
+The model is further fine-tuned with reinforcement learning.
+
+1. AI trainers first have conversations with current model
+2. Then for any given model repsonse, a set of alternative responses are also sampled and a humna labeler ranks the responses
+from most to least prefered response.
+
+
+
+
+- What data has chatGPT been trained on?
+- What are the limiatations of ChatGPT?
+
+
+How can you use chatGPT?
+- coding
+- writing
+
+
+
+#### References:
+
+<a href="https://openai.com/blog/chatgpt/">https://openai.com/blog/chatgpt/</a>
+
+
+<a href="https://kripeshadwani.com/chatgpt-explained/">https://kripeshadwani.com/chatgpt-explained/</a>

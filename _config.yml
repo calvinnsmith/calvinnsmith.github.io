@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: "Data Science with Calvin: A Personal Exploration"
+title: "Data Science with Calvin"
 email: calvin.smith.math@gmail.com
 description:
  
@@ -33,6 +33,7 @@ instagram_username: calvin.m.smith
 theme: minima
 plugins:
   - jekyll-feed
+
 
 
 show_excerpts: true

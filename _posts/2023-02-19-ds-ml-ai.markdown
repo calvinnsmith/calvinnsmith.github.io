@@ -3,18 +3,85 @@ layout: post
 title:  "Let's talk about Data Science, Machine Learning and AI"
 date:   2023-02-15 14:31:20 +0100
 categories: jekyll update
+featured_image: /images/ds_ml_ai.jpg
 ---
-The multiverse of data science, machine learning and AI can be difficult to navigate. The fields are fundamnetally different (even though they overlap in a lot of ways)
-but are often used interchangeably. In this blog post I will try to explain the differences between data science, machine learning and AI and how they relate to each other.
 
-#### Data Science
+In this blog post I will give a short overview of the fields of Data Science, Machine Learning and AI. I will also try to explain the key differences between the fields to help readers navigate this fascinating landscape. 
 
-**Data Science** is a subject or field based on mathematics, statistics and computer science. It is essentially the field that explores how statistics and computer science
-can be combined to gain insights, draw conclusions and learn from data. 
+## Data Science
+Data Science is an interdisciplinary field primarily combining mathematical statistics and programming to gain insights and knowledge
+from different kinds of data (noisy, unstructured, structured, etc...). Typically data science methods are focused on extracting knowledge
+from large data sets (big data) and then using the gained knowledge to solve problems in a specific domain. The field is not limited to but includes: preparing data for analysis,
+formulating a data science problem or hypothesis, exploring and vizualizing data, analyzing data, building and/or training a statistical model and presenting findings for decision making.
 
-#### Machine Learning
 
-**Machine Learning** is the concept of using **data** and a **model** to learn the relationships of the data. 
+Furthermore, it seems relevant to explain the connection between statistics and data science. Many scientists disagree on the difference between these two subjects. Some say that data science is just another
+name for statistics and some argue that data science is a unique subject that is related but distinct from statistics. However, it can be argued that data science is an extended and applied application of statistics.
+Traditional statistics is often focused on structured data and how we can describe our data with statistical methods. The primary focus of statistics is often to describe the relationship between variables in our data. 
+Data Science on the other hand deals with all kinds of data and emphasizes methods for large-scale data processing and analysis. Although finding relationships in data is a important in data science, the primary focus is often
+prediction rather than description. 
 
-#### AI
 
+As you might have understood the field of data science is very broad...
+
+
+## Machine Learning
+Machine learning (ML) is a subset of AI and a toolkit that is heavily used in data science. When I wrote that data science methods are often focused on "exracting knowledge
+from large data sets (big data) and then using the gained knowledge to solve problems" ML is often a big part often process. So, what exactly is ML? Well, a simplified explanation would be that ML 
+is the process of improving a machines performance at a specific task by having it learn through repeated input of data. That is, in ML you do not explicilty program the machine to solve a problem,
+you instead have it learn the solution by itself. ML can be further split into three subcategories: **supervised learning**, **unsupervised learning** and **reinforcement learning**.
+
+### Supervised learning
+In supervised learning you provide the machine with labelled data sets which allows the computer to compare its predictions to the actual values and thus improve its
+performance. There are two forms of supervised learning: **regression** and **classification**. In regression the goal is to predict some numerical value based on
+a number of other factors. For example, we might want predict house prices based on location, size and number of bedrooms. In classification the goal is to predict the class of a data point from a predetermined set of classes.
+For example, we might want to predict which area a house is located in based on its price, size and number of bedrooms. The basic idea behind supervised learning is to provide your machine with labelled data called **training data**.
+In regression the labels are numeric values and in classification the labels are classes. The other data points are called **features**. You then define an algorithm or model which enables the computer to learn the relationship between the labels
+and the features. For every data point you feed to the model it will make a prediction. The prediction is then compared to the label and based on the difference between the prediction and the label, the algorithm/model will make adjustments to its 
+computations to get closer to the labels. When the model has seen every data point in our data set we have finished training our model. This means that the model has come up with a set of rules that can explain the relationship between our features and our labels
+based on the training data. So, now we can use this model to predict the labels of data points where we do not know the labels in advance.
+
+### Unsupervised learning
+In unsupervised learning we do not have access to any labels. However, we might still want to find patterns in our data. The main form of unsupervised learning is known as **clustering**.
+In clustering the goal is to find groups in our data based on similarity of the features. For example, suppose that we have discovered a new, previously unknown, country. We know that
+the country consists of different cities but we do not know how many cities the country consists of. However, we know that a city is a place where a lot of people live in a small area.
+Imagine that we have data of every person in the country and its x and y coordinates on a grid-like map. If we plot the coordinates of every person as dots on a two-dimensional plot we will probably find 
+some areas where there are lots of dots close to each other and some areas where the dots are vey far apart and even some areas with no dots at all. A clustering algorithms task would then be to 
+identify the clusters in the data using the x and y coordinates of each person. When the clustering is complete, the algorithm will have given us a specific number of clusters along with a specified area on the map.
+This can be used to guess how many cities the country consists of (each cluster would be taken as a city) and the approximate size of each city.
+
+### Reinforcement learning
+In reinforcement learning (RL) we train a machine through trial and error to take the best action by creating a reward system.
+If the machine makes a good decision it receives a reward and if it makes a bad decsions it receives a penalty. The goal is often to create a path of
+decisions that creates the maximum number of rewards and/or the minimum number of penalties. It is used in applications such as teaching a computer to play a game or in autonomous driving.
+The data in reinforcement learning consists of the actions that the machine can take at every step and the rewards and penalties it will receive for taking each action. For example, we could design a chess playing AI using
+reinforcement learning by having it play itself millions of times, each time it will get slightly better due to our reward system.
+
+
+
+
+
+
+
+## AI
+Lastly we arrive at Artifical Intelligence (AI). Just as the name implies, this is the field that deals with creating machines that are capable
+of human-like behaviour, interaction and problem solving. There are different types of AI depending on the level of their abilities and what they are aimed at
+doing. AI systems that are aimed at solving a specific problem are often referred to as **weak AI**. Weak AI systems they are not intended to have general cognitive abilities. 
+However, for the specific task that they are designed to perform they can achieve and even surpass human performance and intelligence. All forms of AI systems today can be classified as
+weak AI. Popular examples of weak AI are image and facial recognition systems, chatbots and conversational AI, self-driving vehicles and recommendation systems.
+Regardless of how impressive todays AI systems have become (and are becoming) they still can't act outside the scope of their purpose. A conversational agent like ChatGPT can't decide
+that it wants to start start an online businees selling home made candles. This brings us to **Artificial General Intelligence** (AGI). AGI is essentially the ability of an AI systems to understand, learn and perform
+any intellectual task that humans can. AGI and its implications is currently being researched at many universities but not we are not quite there yet. However, lots of AI researchers believe that we are eventually
+going to achieve AGI in a not so distant future...
+
+
+
+#### References
+
+<a href="https://en.wikipedia.org/wiki/Data_science/">https://en.wikipedia.org/wiki/Data_science</a>
+
+<a href="https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained">https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained</a>
+
+<a href="https://en.wikipedia.org/wiki/Artificial_general_intelligence">https://en.wikipedia.org/wiki/Artificial_general_intelligence</a>
+
+<a href="https://www.techtarget.com/searchenterpriseai/definition/narrow-AI-weak-AI#:~:text=They%20are%20as%20follows%3A,Chatbots%20and%20conversational%20assistants.">https://www.techtarget.com/searchenterpriseai/definition/narrow-AI-weak-AI</a>
