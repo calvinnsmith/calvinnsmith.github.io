@@ -33,6 +33,7 @@ instagram_username: calvin.m.smith
 theme: minima
 plugins:
   - jekyll-feed
+ 
 
 
 

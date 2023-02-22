@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "What is ChatGPT and how can you use it?"
-date:   2023-02-15 14:31:20 +0100
+title:  "Explaining chatGPT"
+date:   2023-02-22 14:31:20 +0100
 categories: jekyll update
 featured_image: /images/open_ai.png
 ---
@@ -21,15 +21,49 @@ OpenAI's GPT-3 large language model and has been fine-tuned using supervised lea
 
 - What are the flaws and limitations of chatGPT? 
 
+
 ### What is chatGPT?
+You probably already have a basic idea of what chatGPT actually is. We will be diving further into the technical details later, but for now lets keep it on a basic level.
+Let's start by asking the main charachter itself. I posed the question "What is chatGPT?" to chatGPT and received the following response:
+<figure>
+    <img src="/assets/images/what_is_chatgpt.png" alt="A kitten">
+    <figcaption><em>Asking chatGPT "what is chatGPT?"</em>.</figcaption>
+</figure>  
+The answer pretty much explains the basics of chatGPT. However, there are a few details in the answer that we will be looking closer at, escpecially
+the part of the answer that states "My responses are generated using a spohisticated algorithm that analyzes patterns and trends in human language...".
+What does that actually mean?
+
+Anyways, for those of you who haven't already tried chatGPT the image above reveals how it works in practice. It's just like chatting with your friend on
+any given social media platform. If you want to try it out for yourself head over to <a href="https://chat.openai.com/chat">the official website</a>, sign up for 
+a free account and start chatting!
 
 ### What makes chatGPT different from other conversational AIs?
+What really makes chatGPT stand out from the rest is its ability of carrying full-fledged conversations with the user. It can remember previous responses
+and answer with natural everyday language. Having a conversation with chatGPT truly feels like a human conversation.
+
+Furthermore, the way chatGPT was trained and fine-tuned is super cool and unique. One of the methods they uses is called Reinforcement Learning from Human Feedback (<a href="https://huggingface.co/blog/rlhf">RLHF</a>).
+RLHF is a machine learning method which was used to improve ChatGPT's performance by having humans rate its responses. As you can imagine, this is a very time consuming and resource heavy training method
+and so it is rarely used in production. In fact, chatGPT iS one of the first large scale language models to implement RLHF in its training.
+
 
 ### What can chatGPT actually do?
+ChatGPT is super powerful and can really boost your performance if you know how to use it. Here is a list of stuff that chatGPT can help you with:
+- Answer questions and follow up questions
+- Summarize text.
+- Proof-read text.
+- Generate drafts
+- Format text.
+- Explain concepts from virtually any domain.
+- Explain code.
+- Write code.
+- Find errors in code.
 
 ### How was chatGPT built and trained?
 
 ### What are the flaws and limitations of chatGPT?
+
+
+
 
 
 
