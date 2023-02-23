@@ -9,7 +9,7 @@ featured_image: /images/open_ai.png
 <b/>
 
 ChatGPT is an advanced conversational AI developed by the the company OpenAI. It launched in November 2022 and was built using
-OpenAI's GPT-3 large language model and has been fine-tuned using supervised learning and reinforcement learning. In this blog post I will cover topics and try to answers questions such as:
+OpenAI's GPT-3 family large language model and has been fine-tuned using supervised learning and reinforcement learning. In this blog post I will cover topics and try to answers questions such as:
 
 - What is chatGPT?
 
@@ -22,11 +22,11 @@ OpenAI's GPT-3 large language model and has been fine-tuned using supervised lea
 - What are the flaws and limitations of chatGPT? 
 
 
-### What is chatGPT?
+## What is chatGPT?
 You probably already have a basic idea of what chatGPT actually is. We will be diving further into the technical details later, but for now lets keep it on a basic level.
 Let's start by asking the main charachter itself. I posed the question "What is chatGPT?" to chatGPT and received the following response:
 <figure>
-    <img src="/assets/images/what_is_chatgpt.png" alt="A kitten">
+    <img src="/assets/images/what_is_chatgpt.png" alt="what_is_chatgpt">
     <figcaption><em>Asking chatGPT "what is chatGPT?"</em>.</figcaption>
 </figure>  
 The answer pretty much explains the basics of chatGPT. However, there are a few details in the answer that we will be looking closer at, escpecially
@@ -37,7 +37,7 @@ Anyways, for those of you who haven't already tried chatGPT the image above reve
 any given social media platform. If you want to try it out for yourself head over to <a href="https://chat.openai.com/chat">the official website</a>, sign up for 
 a free account and start chatting!
 
-### What makes chatGPT different from other conversational AIs?
+## What makes chatGPT different from other conversational AIs?
 What really makes chatGPT stand out from the rest is its ability of carrying full-fledged conversations with the user. It can remember previous responses
 and answer with natural everyday language. Having a conversation with chatGPT truly feels like a human conversation.
 
@@ -46,19 +46,88 @@ RLHF is a machine learning method which was used to improve ChatGPT's performanc
 and so it is rarely used in production. In fact, chatGPT iS one of the first large scale language models to implement RLHF in its training.
 
 
-### What can chatGPT actually do?
+## What can chatGPT actually do?
 ChatGPT is super powerful and can really boost your performance if you know how to use it. Here is a list of stuff that chatGPT can help you with:
-- Answer questions and follow up questions
-- Summarize text.
-- Proof-read text.
-- Generate drafts
-- Format text.
-- Explain concepts from virtually any domain.
-- Explain code.
-- Write code.
-- Find errors in code.
+
+### Answer questions and follow up questions 
+Not only can it answer your questions but you can hold a conversation with it and prompt follow up questions.
+It can even admit that it has made a mistake and correct it.
+
+### Summarize text 
+Give it a text and ask it so summarize it for you. You can even specify HOW you want the text to be summarized. For example, I might want the summary as bulletpoints or maybe I need it in a specific length.
+
+### Proof-read text 
+ChatGPT can help you check your text for errors and even give you tips on how you can improve your writing.
+
+### Generate drafts and outlines 
+If you need some help getting started with your project, chatGPT can help you generate a draft or outline a suitable structure. 
+
+### Explain concepts from virtually any domain
+Even though chatGPT still has som major flaws and isn't always reliably giving accurate information, you can ask it questions about virtually any concept
+(just like googling) and it try to explain it. Its a great way to get an overview or a short answer on a specific topic.
+
+### Write code 
+Yes, chatGPT can write code! In fact, a lot of the data that chatGPT has been trained on is code. This is an awesome thing for developers as chatGPT can really help boost productivity.
+In the image below I asked chatGPT to write a Python program that sorts a list of integers and prints then prints them in ascending order.
+<figure>
+    <img src="/assets/images/gpt_explain_code.png" alt="write">
+    <figcaption><em>Asking chatGPT to write a python program</em>.</figcaption>
+</figure>  
+
+### Explain code 
+This is another one of chatGPT's awesome dev skills and one that I think can REALLY help boost performance for anyone working with code. Find some complicated code that you can't really understand?
+Ask chatGPT. Have you written a some code that needs a clear explanation (hint: your code should always be clearly explained). Ask chatGPT. The image below shows chatGPT explaining a function in Python.
+<figure>
+    <img src="/assets/images/basic_math.png" alt="explain">
+    <figcaption><em>Asking chatGPT to write a python program</em>.</figcaption>
+</figure>  
+
+
+
+
+### Debug code 
+YES! ChatGPT can debug code. Just submit your code snippet (or program) and ask it why it's not working. It's that easy. In the image below I gave chatGPT a Python program with
+a few errors and asked it to check it.
+<figure>
+    <img src="/assets/images/debug_code.png" alt="debug">
+    <figcaption><em>Asking chatGPT to debug code.</em>.</figcaption>
+</figure>  
 
 ### How was chatGPT built and trained?
+As previously mentioned chatGPT was built using OpenAI's language model GPT-3. ChatGPT is essentially a fine-tuned version of GPT-3. 
+So, before moving on to exaplining the training of chatGPT, we need some more information about GPT-3. Most importantly, we need to know the difference
+between GPT-3 and chatGPT, as well as what it means that chatGPT is a fine-tuned version of GPT-3.
+
+#### GPT-3 versus chatGPT
+GPT-3 (Generative Pre-Trained Transformer 3) is a general-purpose language model with an astonishing 175B parameters, making it one of the largest and most powerful
+language models in existence. It was trained on a wide variety of natural language processing tasks, such as language modelling, question answering, and text generation.
+The model is designed to be used for many different applications including translation, summarization, content generation, and more. GPT-3 was trained on 45TB of
+text data from multiple sources such as Wikipedia, books, and webpages.
+
+ChatGPT, on the other hand is a specialized language model designed specifically for conversational AI applications like chatbots and virtual assistans.
+ChatGPT has a smaller number of parameter (6B) but is trained specifically on conversational data and has been fine-tuned for the task of generating natural-sounding
+dialogue in response to user input. It is designed to understand and respond to natural language queries that mimics human conversation. Further, as previously mentioned
+chatGPT is a fine-tuned version of GPT-3. Fine-tuning is a common technique used in natural language processing, where a pre-trained language model 
+is further trained on a specific task to improve its performance on that task. In the case of chatGPT, the pre-trained GPT-3 model was fine-tuned on a large dataset
+of conversational data, including dialogues from social media, chat logs and other sources.
+
+#### GPT-3 architecture and training
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### What are the flaws and limitations of chatGPT?
 

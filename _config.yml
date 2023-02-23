@@ -24,10 +24,10 @@ description:
  
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://calvinnsmith.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-#twitter_username: jekyllrb
+twitter_username: StatsWithCalvin
 github_username: calvinnsmith
 linkedin_username: calvin-smith-85936b162 
-instagram_username: calvin.m.smith
+#instagram_username: calvin.m.smith
 
 # Build settings
 theme: minima
