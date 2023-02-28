@@ -45,6 +45,200 @@ Furthermore, the way chatGPT was trained and fine-tuned is super cool and unique
 RLHF is a machine learning method which was used to improve ChatGPT's performance by having humans rate its responses. As you can imagine, this is a very time consuming and resource heavy training method
 and so it is rarely used in production. In fact, chatGPT iS one of the first large scale language models to implement RLHF in its training.
 
+## How was chatGPT built and trained?
+As previously mentioned chatGPT was built using OpenAI's language model GPT-3. That is, ChatGPT is essentially a fine-tuned version of GPT-3. 
+So, before moving on to explaining the training of chatGPT, we need some more information about GPT-3. Most importantly, we need to know the difference
+between GPT-3 and chatGPT, as well as what it means that chatGPT is a fine-tuned version of GPT-3.
+
+### GPT-3 versus chatGPT
+GPT-3 (Generative Pre-Trained Transformer 3) is a general-purpose language model with an astonishing 175B parameters, making it one of the largest and most powerful
+language models in existence. It was trained on a wide variety of natural language processing tasks, such as language modelling, question answering, and text generation.
+The model is designed to be used for many different applications including translation, summarization, content generation, and more. GPT-3 was trained on 45TB of
+text data from multiple sources such as Wikipedia, books, and webpages.
+
+ChatGPT, on the other hand is a specialized language model designed specifically for conversational AI applications like chatbots and virtual assistans.
+ChatGPT has a smaller number of parameter (6B) but is trained specifically on conversational data and has been fine-tuned for the task of generating natural-sounding
+dialogue in response to user input. It is designed to understand and respond to natural language queries that mimics human conversation. Further, as previously mentioned
+chatGPT is a fine-tuned version of GPT-3. Fine-tuning is a common technique used in natural language processing, where a pre-trained language model 
+is further trained on a specific task to improve its performance on that task. In the case of chatGPT, the pre-trained GPT-3 model was fine-tuned on a large dataset
+of conversational data, including dialogues from social media, chat logs and other sources.
+
+### GPT-3 architecture and training
+GPT-3 is built using a neural network architecture called the **Transformer**. The transformer architecture consists of two parts, the **encoder** 
+and the **decoder**. The GPT-3 model only uses the decoder part of the architecture.
+<figure>
+    <img src="/assets/images/transformer.png" alt="what_is_chatgpt">
+    <figcaption><em>The Transformer</em>.</figcaption>
+</figure>
+The transformer is a sequence transduction model that transforms input sequences into output sequences. This is suitable for language modelling and machine translation since
+language presents itself as a sequence of words. In natural language processing (NLP) the transformer is used to **model language**. In statistical terms "to model language" essentially means
+to create accurate probabilistic relationships between word such that given a sequence of words the model can predict the next word in the sequence.
+
+So, how does GPT-3 use transformers to model language and generate text?
+
+
+
+#### Input
+
+GPT-3 is trained using **next word prediction**. It takes a sequence of words as input and then outputs the predicted next word in the sequence. 
+Since the predicted word can then be added to the sequence, the new sequence can be passed through the model again and generate a new word, and so on... 
+This is why GPT-3 is a generative model i.e it can generate long sequences of text. To be even more precise, before we pass a sequence of words to GPT-3 we need
+to tokenize the sequence. Tokenization means that we split up the sequence into parts (usually words) and map them to the models vocabulary. GPT-3 has a vocabulary of 50257 tokens.
+For example the sentence "How are you?" could be split into ["How","are","you","?"] and then represented as [300,5618,7000,28566]. This part is so that we can map every part of the sequence back to the models vocabulary. 
+Next, its important that every sequence we pass to the model has the same size (so that all the matrix multiplications work), so the input sequence is actually transformed into a vector 
+of size 2048 and if the sequence is shorter than 2048 the rest of the elements in the vector are filled with pad tokens. So  ["How","are","you","?"] would in fact be
+["How","are","you","?",PAD,PAD,...,PAD] which would become [300,5618,7000,28566,102,102,...,102]. Next, before we input anything to the model each token in the input sequence
+can be represented as a one-hot vector of size 50257 (same size as the vocabulary). The vector consists of zeros everywhere and a single one corresponding to the index of that token.
+For example, the word "How" in the above sequence would be [0,0,0,....,1,0,0,0,...,], where the 1 would have the index 300. So, we have an input sequence which is a vector of size 2048 and each element in the vector
+is represented as a one-hot vector of size 50.257. If we stack the one-hot vectors as rows we get a matrix with 2048 rows and 50257 columns. This is the input passed to GPT-3.
+
+#### Embedding and positional encoding
+
+The next step is creating an **embedding** of the input. The input matrix described above doesn't contain any useful information, its a sparse matrix with only ones and zeros.
+Instead we want to create some numerical representation of each token that captures all the information that our model needs to "understand" what token it has been fed and under what context.
+This is done by using an embedding matrix $$ W_{e} $$. The embedding matrix is learned through training and used to create a high dimensional representation of each token. This dimension is 12288 in GPT-3.
+Think of the embedding matrix as weights applied to each token in our input vector and transforms the input from 50.257 dimension to 12288 dimensions. The mathematical operation performed is matrix multiplication.
+We take the 2048x50257 input matrix and multiply it with the 12288x50257 embedding matrix $$ W_{e} $$ and we get a 2048x12288 matrix as output.
+
+What makes transformers so good at handling sequences of words is that the position of each word relative to every other word can be encoded. This is very important because
+words are understood through context. Each token in the input has an index (i.e its position in the input sequence) between 0 and 2047. The index is passed through a series of functions
+and outputs a vector of size 12288 and if we stack all the the positional encoding vectors we get a position-encoding matrix of size 2048x12288. This matrix is then simply added to the sequence-embedding
+matrix.
+
+
+#### Attention
+Attention is probably the most important part of transformers and why they perform so well. The GPT-3 model uses two forms of attention, self-attention and cross-attention.
+Self-attention is the concept of determining how important each token in the sequence is relative to every other token. It is a way of allowing the model to attend to important context words
+and capture dependencies between them. This involves computing attention scores between each input token and all other tokens in the sequence.
+Cross-attention is used to determine which words in the sequence are most important for predicting the next word in the sequence. It involves computing attention scores between the input
+sequence and a set of query vectors that represent the previous words in the generated sequence.
+
+
+Attention mostly consists of linear algebra and there are three main matrices used in attention. These are the Q (query), K (key) and V (value) matrices. As of now, we have our sequence embedding matrix of size 2048x12288, let's call this 
+matrix $$ X $$. As you recall, every row in $X$ corresponds to the pre-trained embedding vector for each token in our sequence (or the pre-trained embedding vector for a pad token). These vectors are numerical representations
+of each token that are meant to capture the "meaning" of each word in a numerical form. However, we all know that meaning is dependant on context. That is, the meaning of each word in a sequence of words is in some way dependent 
+on the other words in the sequence, and so a good language model should be able to understand contextualized meaning. This means that for every token embedding in our sequence, we want to add some information about all the other tokens in the sequence.
+Think of it kind of like "storing context" in every word embedding. This is done through matrix multiplication. The three main matrices in attention are the
+$$Q$$(query), $$K$$(key), and $$V$$ (value) matrices. The query matrix represents the information that we are looking for in the input data. We can think of it as the "questions" that we want the attention mechanism to answer. 
+The key matrix represents the "features" of the input data. We can think of it as a set of "answers" to the questions posed by the quary vector. The value matrix represents the actual "content" of the input data.
+We can think of it as a set of "facts" that are relevant to the question posed by the query vector. The matrices are obtained as follows:
+
+$$
+Q = XW_{q}
+$$
+
+$$
+K = XW_{k}
+$$
+
+$$
+V = XW_{v}
+$$
+
+where $$W_{q}$$, $$W_{k}$$, and $$W_{v}$$ are weight matrices learned during trained. To compute the attention scores we use the following formula:
+
+$$
+A = softmax(\dfrac{QK^{T}}{\sqrt{d_k}})V
+$$
+
+where $$ d_{k} $$ is the dimension of the key matrix and the softmax-function is a function that transforms every element in the matrix inside the function
+to a value between 0 and 1 (so the values can be viewed as probabilities). The attention $$A$$ matrix is then added to $$X$$ and then normalized:
+
+$$
+ 
+X_{out} = Norm(X + A)
+
+$$
+
+Thats attention! The difference between self-attention and cross-attention is the matrix $$X$$ that we use to obtain $$Q$$, $$K$$, and $$V$$. 
+As the name implies, in self-attention the matrix $$X$$ consists of the input to  attention-layer and is used when calculating $$Q$$, $$K$$, and $$V$$.
+In cross attention you would use the matrix $$ X $$ to calculate the query matrix, but something else to calculate the key and value matrices.
+If you look at the image of the transformer architecture, you can see that in the decoder there is a second attention block that connects to the encoder part.
+This is where cross-attention happens. As you can see the only difference between the first attention block and the second one, is that the input to the second block
+connects to the encoder. However, GPT-3 only consists of decoders so what is the input to the cross-attention block? This part is actually not entirely clear to me yet but I
+think that the input at each step will be the output from the previous step somehow.
+
+#### Multi-Head Attention and Decoder Layers
+In GPT-3 they use an attention method called Multi-Head Attention. This essentially means that the above process is just repeated lots of times in parallell with different
+query, key and value matrices. In the end, everything is added and packed together and the output is just the same as described above. This is a way of expanding the model to be able to include more and more complicated and subtle information about the input sequences.
+GPT-3 uses 96 attention heads in each multi-head attention layer. Along with that, GPT-3 (the largest version) consists of 96 decoders stacked on top of each other where the output from each decoder layer serves as the input to the next decoder layer.
+
+
+#### Decoding
+When the original input has gone through the attention blocks the last step is a simple feed-forward neural network. I will not go in to detail about this step.
+But just imagine that we are doing some final processing and adding a little bit more information before we are done processing the input. 
+
+So, now we have passed through 96 layers of GPT-3 and the input has been processed into a matrix of size 2048x12288, lets call it $$X$$ again. Each row in $$X$$ should contain the information that we need to decide which token should come after each token in the sequence.
+To be more specific, this information is stored in a vector with 12288 elements! Now we want to use this information to predict words. 
+In the first step, we transformed the input sequence from a one-hot matrix with 2048 rows and 50257 columns to an embedded matrix with 2048 rows and 12288 columns, by multiplying the one-hot matrix with a learned embedding matrix $$W_{e} $$ (size 50257x12288).
+We can repeat the same process again, but now we are doing the opposite by transforming $$ X $$ to a 2048X50257 matrix. This is done by multiplying our output matrix with the inverse of our embedding matrix $$ W_{e} $$ (size 12288x50257)
+and we are back to the original size 2048x50257. If we pass the resulting matrix through a soft-max layer each element in the matrix can be viewed as a probability. More specifically, since each row corresponds to a specific token in our sequence and every row has 50257 columns
+(which is the number of tokens in the vocabulary), we can look at each row as a probability distribution over all words in the vocabulary. In most cases, we are only interested in predicting the next word in the input sequence
+which means that we would look up the row corresponding to the first padded token. For example, given the input sequence ["How","are","you",PAD,...,PAD], we would look at the row in our output matrix corresponding to the first padded token. As mentioned, this row is a vector with 50257 probabilities, one for each token in the vocabulary.
+We can either pick the token with the highest probability as the predicted token or we could choose the top k tokens based on probability and use top-k sampling.
+For example, assume we have k = 3 and the top 3 tokens are ["?":0.14], ["today":0.05] and ["sir":0.003]. We we would convert the probabiltities so they sum to one and then sample with probability from the top 3 words.
+This is a preferred way of predicting during training because it generates more diverse text and prevents the model from getting stuck.
+
+
+### Back to ChatGPT
+Now that you have some more information about GPT-3, the underlying model of ChatGPT, lets move on to chatGPT. The building of ChatGPT can be broken down
+into three parts: 
+
+1) Generative pre-training.
+
+2) Supervised fine-tuning.
+
+3) Reinforcement Learning from Human Feedback (RLHF).
+
+Generative pre-training is where we build our foundational language model that has learnt sophisticated probabilistic dependencies between words.
+We have actually already covered that part, it's GPT-3! The problem is that GPT-3 is trained to generate text by predicting the next word in a sequence. It is not
+trained to generatE human-like responses in a conversational setting.. But even though GPT-3 is not suited for our purpose it has huge amounts of knowledge about language that
+we want to use. This is where the second part comes in, supervised fine-tuning.
+
+#### Supervised fine-tuning
+Supervised learning is when you train a model using a labelled data set. This means that you can compare the output of the model to the actual answer and based
+on the difference between the models output and the actual answer, the model can be adjusted to perform better next time. In this case chatGPT needs to be trained to hold
+conversations, so the data consists of user prompts together with responses (labels). The labelled data was created by humans playing the role of both user and and an ideal version of ChatGPT.
+These conversations are then aggregated in to a data set where each training example consists of a particular conversation history paired together with the next ideal response (label).
+
+So, chatGPT is presented with the input-output pairs (conversation-response) and is trained to predict the response given the conversation.
+This process is repeated many times and for every conversation it is exposed to, the model will get better and better at predicting responses.
+To be a little more specific, every time chatGPT produces a response it is compared to the ideal response (label) and a score is computed. This score can be seen
+as the numerical difference between the response and the label. The objective with training chatGPT is to minimize this difference. This is what learning through training refers to.
+The input to our model needs to go through several steps before output (think about embedding, self-attention, feed-forward etc...) in each of these steps there are
+weights that we multiply with our input as it goes along the model (think about $$W_{e}$$, $$W_{q}$$, $$W_{k}$$, and $$W_{v}$$). These weights are often initialized randomly and then learned
+through training meaning that during training we update the weights such that the models responses gets closer closer to the labels. This is done through something called **backpropagation**,
+which I won't be covering here. When the training is completed (i.e when the model has been exposed to all the labelled data) the models weights will be fine-tuned to generate responses.
+
+
+#### Reinforcement Learning from Human Feedback 
+
+
+
+
+
+1) Generative pre-training (GPT-3)
+Using next word predictions
+This is where we build the foundation and allow the model to learn sophisticated probabilistic dependencies between words, sentences and paragraph.
+
+2) Supervised fine-tuning
+Alignment problem, the previous step is designed to complete user input sentence, not answer or explain.
+
+This done by humans acting as both the user and chatbot to provide data for the model.
+
+Each training example consists of a particular conversation history and the next response.
+Train the model by making it 
+
+
+3) RLHF
+The model is further fine-tuned with reinforcement learning.
+
+1. AI trainers first have conversations with current model
+2. Then for any given model repsonse, a set of alternative responses are also sampled and a humna labeler ranks the responses
+from most to least prefered response.
+
+
+
 
 ## What can chatGPT actually do?
 ChatGPT is super powerful and can really boost your performance if you know how to use it. Here is a list of stuff that chatGPT can help you with:
@@ -68,7 +262,7 @@ Even though chatGPT still has som major flaws and isn't always reliably giving a
 
 ### Write code 
 Yes, chatGPT can write code! In fact, a lot of the data that chatGPT has been trained on is code. This is an awesome thing for developers as chatGPT can really help boost productivity.
-In the image below I asked chatGPT to write a Python program that sorts a list of integers and prints then prints them in ascending order.
+In the image below I asked chatGPT to write a Python program that sorts a list of integers and then prints them in ascending order.
 <figure>
     <img src="/assets/images/gpt_explain_code.png" alt="write">
     <figcaption><em>Asking chatGPT to write a python program</em>.</figcaption>
@@ -93,25 +287,6 @@ a few errors and asked it to check it.
     <figcaption><em>Asking chatGPT to debug code.</em>.</figcaption>
 </figure>  
 
-### How was chatGPT built and trained?
-As previously mentioned chatGPT was built using OpenAI's language model GPT-3. ChatGPT is essentially a fine-tuned version of GPT-3. 
-So, before moving on to exaplining the training of chatGPT, we need some more information about GPT-3. Most importantly, we need to know the difference
-between GPT-3 and chatGPT, as well as what it means that chatGPT is a fine-tuned version of GPT-3.
-
-#### GPT-3 versus chatGPT
-GPT-3 (Generative Pre-Trained Transformer 3) is a general-purpose language model with an astonishing 175B parameters, making it one of the largest and most powerful
-language models in existence. It was trained on a wide variety of natural language processing tasks, such as language modelling, question answering, and text generation.
-The model is designed to be used for many different applications including translation, summarization, content generation, and more. GPT-3 was trained on 45TB of
-text data from multiple sources such as Wikipedia, books, and webpages.
-
-ChatGPT, on the other hand is a specialized language model designed specifically for conversational AI applications like chatbots and virtual assistans.
-ChatGPT has a smaller number of parameter (6B) but is trained specifically on conversational data and has been fine-tuned for the task of generating natural-sounding
-dialogue in response to user input. It is designed to understand and respond to natural language queries that mimics human conversation. Further, as previously mentioned
-chatGPT is a fine-tuned version of GPT-3. Fine-tuning is a common technique used in natural language processing, where a pre-trained language model 
-is further trained on a specific task to improve its performance on that task. In the case of chatGPT, the pre-trained GPT-3 model was fine-tuned on a large dataset
-of conversational data, including dialogues from social media, chat logs and other sources.
-
-#### GPT-3 architecture and training
 
 
 
@@ -138,103 +313,15 @@ of conversational data, including dialogues from social media, chat logs and oth
 
 
 
-Introduction:
-- What is chatGpt?
-ChatGPT is an advanced conversational AI developed by OpenAI and launched in November 2022. It was built with OpenAI's GPT-3 family
-of large language models and has been fine-tuned using supervised learning and reinforcement learning.
-
-- What makes ChatGPT different from other chatbots?
-Its ability to carry full-fledged conversations with the user. Apart from being able to analyze your questions and respond to them, it can
-remember your previous responses and answer with natural every day language. Having a conversation with ChatGPT truly feels like a human conversation.
-
-
-- What can chatGPT do?
-ChatGPT is a powerful conversational AI. According to OpenAI it can answer followup questions, admit its mistakes, challenge incorrect premises and reject inappropriate requests.
-
-More specifically chatGPT can be used to:
-
-- Answer questions and follow up questions.
-- Summarize text.
-- Proof-read text.
-- Generate drafts
-- Format text.
-- Explain concepts from virtually any domain.
-- Explain code.
-- Write code.
-- Find errors in code.
- etc.....
-
-
-Theory:
-
-Generative AI
-
-- How is chatGPT built?
-
-using GPT-3.5 (Generative Pre-Trained Transformers)
-
-what is GPT-3?
-
--its an autoregressive language model developed by OpenAI
--trained on a dataset of 45TB of text data (wikipedia, books, webpages) (300 billion tokens)
-- 175 billion parameters
--trained using next word prediction
-- 96 transformer decoder layers
-
-
-
-
-what is Transformers?
-- Its a type of neural network architecture
-- Three things that make transformers work very well:
-  - positionl encoding
-  - attention
-  - self-attention
-
-
-
-- How was chatGPT trained?
-
-using RLHF (Reinforcement Learning Through Human Feedback)
-
-Chat GPT can attend to about 3000 words of prior context (this is its memory)
-
-1) Generative pre-training (GPT-3)
-Using next word predictions
-This is where we build the foundation and allow the model to learn sophisticated probabilistic dependencies between words, sentences and paragraph.
-
-2) Supervised fine-tuning
-Alignment problem, the previous step is designed to complete user input sentence, not answer or explain.
-
-This done by humans acting as both the user and chatbot to provide data for the model.
-
-Each training example consists of a particular conversation history and the next response.
-Train the model by making it 
-
-
-3) RLHF
-The model is further fine-tuned with reinforcement learning.
-
-1. AI trainers first have conversations with current model
-2. Then for any given model repsonse, a set of alternative responses are also sampled and a humna labeler ranks the responses
-from most to least prefered response.
-
-
-
-
-- What data has chatGPT been trained on?
-- What are the limiatations of ChatGPT?
-
-
-How can you use chatGPT?
-- coding
-- writing
-
 
 
 #### References:
 
 <a href="https://openai.com/blog/chatgpt/">https://openai.com/blog/chatgpt/</a>
 
+<a href="https://huggingface.co/blog/rlhf">https://huggingface.co/blog/rlhf</a>
 
 <a href="https://kripeshadwani.com/chatgpt-explained/">https://kripeshadwani.com/chatgpt-explained/</a>
+
+<a href = "https://dugas.ch/artificial_curiosity/GPT_architecture.html">https://dugas.ch/artificial_curiosity/GPT_architecture.html</a>
+

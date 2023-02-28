@@ -3,19 +3,6 @@ layout: page
 title: About
 permalink: /about/
 ---
-<html>
-    <head>
-    <style>
-    body {
-      background-image: url('{{ site.baseurl }}/assets/images/background_web.jpg');
-      background-repeat: no-repeat;
-      background-attachment: fixed;  
-      background-size: cover; 
-    }
-    </style>
-    </head>
-
-    </html>
 
 
 <a href="url"><img src="/assets/images/calvin_ai_about.jpg" height="auto" width="500" style="border-radius:50%"></a>
@@ -31,7 +18,7 @@ When I'm not working or blogging, I love staying active, reading, and hitting up
 I'm looking forward to sharing my journey in data science with you. Let's go!
 
 Best, 
-Calvin**
+Calvin
 
 
 
