@@ -1,0 +1,70 @@
+---
+layout: post
+title:  "SQL Cheat Sheet"
+date:   2023-02-22 14:31:20 +0100
+categories: [Databases]
+featured_image: /images/postgres.png
+---
+This post serves as cheat sheet for SQL syntax!
+
+
+* TOC
+{:toc}
+
+
+# Creating Tables
+
+### Basic table
+{% highlight sql %}
+    CREATE TABLE TableName(
+        a1 INT,
+        a2 TEXT,
+        a3 CHAR(6),
+        PRIMARY KEY(a1)
+    );
+{% endhighlight %}
+
+This creates a table called ```TableName``` with three columns ```a1```, ```a2```, and ```a3```.
+When you define a column name the datatype of the column needs to be specified after. As you can see
+```a1``` is of type ```INT```, ```a2``` is of type ```TEXT``` and ```a3``` is of type ```CHAR```. There are multiple different
+datatypes in SQL but the most common ones are:
+
+```INT```: Integers.
+
+```REAL```: Floats.
+
+```NUMERIC(p,s)```: Numbers with p digits before and s digits after.
+
+```CHAR(n)```: Fixed string of size n.
+
+```VARCHAR(n)```: Variable string size with max size n.
+
+```TEXT```: For variable sized strings
+
+```TIMESTAMP```: For date and time.
+
+```DATE``` and ```TIME```: For dates and times of days independently.
+
+The ```PRIMARY KEY``` values tells us that ```a1``` is the primary key of the table. This means that we can use ```a1``` to identify individual rows in our table (the each value in ```a1``` is unique and can only be inserted once). A primary key can also
+consist of multiple attributes (columns), this is called a compound key. Remember that if you have a compound key it is the combination of all the attributes in the key that is unique, not each individual atrribute by itself!
+
+
+### Foreign keys, unique constraints and value constraints
+{% highlight sql %}
+    CREATE TABLE TableName(
+        a1 INT,
+        a2 TEXT,
+        a3 CHAR(6),
+        PRIMARY KEY(a1),
+        FOREIGN KEY (a2) REFERENCES AnotherTable(col4),
+        UNIQUE(a3),
+        CHECK(a1 > 5 AND a1 < 10 )
+    );
+{% endhighlight %}
+
+The ```FOREIGN KEY``` constraint tells us that values inserted in ```a2``` needs to exist in the column ```col4``` from
+```AnotherTable```. Just as with primary keys, you can have compound references. 
+
+The ```UNIQUE``` constraint tells us that the values in ```a3``` need to be unique.
+
+The ```CHECK``` constraint tells us that values inserted in ```a1``` need to be larger than 5 and less than 10.
