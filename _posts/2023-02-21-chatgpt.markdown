@@ -1,56 +1,53 @@
 ---
 layout: post
-title:  "Explaining chatGPT"
+title:  "Explaining ChatGPT"
 date:   2023-02-22 14:31:20 +0100
 categories: jekyll update
 featured_image: /images/open_ai.png
 ---
-
-<b/>
-
 ChatGPT is an advanced conversational AI developed by the the company OpenAI. It launched in November 2022 and was built using
 OpenAI's GPT-3 family large language model and has been fine-tuned using supervised learning and reinforcement learning. In this blog post I will cover topics and try to answers questions such as:
 
-- What is chatGPT?
+- What is ChatGPT?
 
-- What makes chatGPT different from other conversational AIs?
+- What makes ChatGPT different from other conversational AIs?
 
-- What can chatGPT actually do?
+- What can ChatGPT actually do?
 
-- How is chatGPT built and trained?
+- How is ChatGPT built and trained?
 
-- What are the flaws and limitations of chatGPT? 
+- What are the flaws and limitations of ChatGPT? 
 
 
-## What is chatGPT?
-You probably already have a basic idea of what chatGPT actually is. We will be diving further into the technical details later, but for now lets keep it on a basic level.
-Let's start by asking the main charachter itself. I posed the question "What is chatGPT?" to chatGPT and received the following response:
+## What is ChatGPT?
+You probably already have a basic idea of what ChatGPT actually is. We will be diving further into the technical details later, but for now lets keep it on a basic level.
+Let's start by asking the main charachter itself. I posed the question "What is ChatGPT?" to ChatGPT and received the following response:
 <figure>
     <img src="/assets/images/what_is_chatgpt.png" alt="what_is_chatgpt">
-    <figcaption><em>Asking chatGPT "what is chatGPT?"</em>.</figcaption>
+    <figcaption><em>Asking ChatGPT "what is ChatGPT?"</em>.</figcaption>
 </figure>  
-The answer pretty much explains the basics of chatGPT. However, there are a few details in the answer that we will be looking closer at, escpecially
+The answer pretty much explains the basics of ChatGPT. However, there are a few details in the answer that we will be looking closer at, escpecially
 the part of the answer that states "My responses are generated using a spohisticated algorithm that analyzes patterns and trends in human language...".
 What does that actually mean?
 
-Anyways, for those of you who haven't already tried chatGPT the image above reveals how it works in practice. It's just like chatting with your friend on
+Anyways, for those of you who haven't already tried ChatGPT the image above reveals how it works in practice. It's just like chatting with your friend on
 any given social media platform. If you want to try it out for yourself head over to <a href="https://chat.openai.com/chat">the official website</a>, sign up for 
 a free account and start chatting!
 
-## What makes chatGPT different from other conversational AIs?
-What really makes chatGPT stand out from the rest is its ability of carrying full-fledged conversations with the user. It can remember previous responses
-and answer with natural everyday language. Having a conversation with chatGPT truly feels like a human conversation.
+## What makes ChatGPT different from other conversational AIs?
+What really makes ChatGPT stand out from the rest is its ability of carrying full-fledged conversations with the user. It can remember previous responses
+and answer with natural everyday language. Having a conversation with ChatGPT truly feels like a human conversation.
 
-Furthermore, the way chatGPT was trained and fine-tuned is super cool and unique. One of the methods they uses is called Reinforcement Learning from Human Feedback (<a href="https://huggingface.co/blog/rlhf">RLHF</a>).
+Furthermore, the way ChatGPT was trained and fine-tuned is super cool and unique. One of the methods they uses is called Reinforcement Learning from Human Feedback (<a href="https://huggingface.co/blog/rlhf">RLHF</a>).
 RLHF is a machine learning method which was used to improve ChatGPT's performance by having humans rate its responses. As you can imagine, this is a very time consuming and resource heavy training method
-and so it is rarely used in production. In fact, chatGPT iS one of the first large scale language models to implement RLHF in its training.
+and so it is rarely used in production. In fact, ChatGPT iS one of the first large scale language models to implement RLHF in its training.
 
-## How was chatGPT built and trained?
-As previously mentioned chatGPT was built using OpenAI's language model GPT-3. That is, ChatGPT is essentially a fine-tuned version of GPT-3. 
-So, before moving on to explaining the training of chatGPT, we need some more information about GPT-3. Most importantly, we need to know the difference
-between GPT-3 and chatGPT, as well as what it means that chatGPT is a fine-tuned version of GPT-3.
+## How was ChatGPT built and trained?
+As previously mentioned ChatGPT was built using OpenAI's language model GPT-3. That is, ChatGPT is essentially a fine-tuned version of GPT-3. 
+So, before moving on to explaining the training of ChatGPT, we need some more information about GPT-3. Most importantly, we need to know the difference
+between GPT-3 and ChatGPT, as well as what it means that ChatGPT is a fine-tuned version of GPT-3.
 
-### GPT-3 versus chatGPT
+### GPT-3 versus ChatGPT
 GPT-3 (Generative Pre-Trained Transformer 3) is a general-purpose language model with an astonishing 175B parameters, making it one of the largest and most powerful
 language models in existence. It was trained on a wide variety of natural language processing tasks, such as language modelling, question answering, and text generation.
 The model is designed to be used for many different applications including translation, summarization, content generation, and more. GPT-3 was trained on 45TB of
@@ -59,8 +56,8 @@ text data from multiple sources such as Wikipedia, books, and webpages.
 ChatGPT, on the other hand is a specialized language model designed specifically for conversational AI applications like chatbots and virtual assistans.
 ChatGPT has a smaller number of parameter (6B) but is trained specifically on conversational data and has been fine-tuned for the task of generating natural-sounding
 dialogue in response to user input. It is designed to understand and respond to natural language queries that mimics human conversation. Further, as previously mentioned
-chatGPT is a fine-tuned version of GPT-3. Fine-tuning is a common technique used in natural language processing, where a pre-trained language model 
-is further trained on a specific task to improve its performance on that task. In the case of chatGPT, the pre-trained GPT-3 model was fine-tuned on a large dataset
+ChatGPT is a fine-tuned version of GPT-3. Fine-tuning is a common technique used in natural language processing, where a pre-trained language model 
+is further trained on a specific task to improve its performance on that task. In the case of ChatGPT, the pre-trained GPT-3 model was fine-tuned on a large dataset
 of conversational data, including dialogues from social media, chat logs and other sources.
 
 ### GPT-3 architecture and training
@@ -78,7 +75,7 @@ So, how does GPT-3 use transformers to model language and generate text?
 
 
 
-#### Input
+#### **Input**
 
 GPT-3 is trained using **next word prediction**. It takes a sequence of words as input and then outputs the predicted next word in the sequence. 
 Since the predicted word can then be added to the sequence, the new sequence can be passed through the model again and generate a new word, and so on... 
@@ -92,7 +89,7 @@ can be represented as a one-hot vector of size 50257 (same size as the vocabular
 For example, the word "How" in the above sequence would be [0,0,0,....,1,0,0,0,...,], where the 1 would have the index 300. So, we have an input sequence which is a vector of size 2048 and each element in the vector
 is represented as a one-hot vector of size 50.257. If we stack the one-hot vectors as rows we get a matrix with 2048 rows and 50257 columns. This is the input passed to GPT-3.
 
-#### Embedding and positional encoding
+#### **Embedding and positional encoding** 
 
 The next step is creating an **embedding** of the input. The input matrix described above doesn't contain any useful information, its a sparse matrix with only ones and zeros.
 Instead we want to create some numerical representation of each token that captures all the information that our model needs to "understand" what token it has been fed and under what context.
@@ -106,7 +103,7 @@ and outputs a vector of size 12288 and if we stack all the the positional encodi
 matrix.
 
 
-#### Attention
+#### **Attention** 
 Attention is probably the most important part of transformers and why they perform so well. The GPT-3 model uses two forms of attention, self-attention and cross-attention.
 Self-attention is the concept of determining how important each token in the sequence is relative to every other token. It is a way of allowing the model to attend to important context words
 and capture dependencies between them. This involves computing attention scores between each input token and all other tokens in the sequence.
@@ -158,13 +155,13 @@ This is where cross-attention happens. As you can see the only difference betwee
 connects to the encoder. However, GPT-3 only consists of decoders so what is the input to the cross-attention block? This part is actually not entirely clear to me yet but I
 think that the input at each step will be the output from the previous step somehow.
 
-#### Multi-Head Attention and Decoder Layers
+#### **Multi-Head Attention and Decoder Layers**
 In GPT-3 they use an attention method called Multi-Head Attention. This essentially means that the above process is just repeated lots of times in parallell with different
 query, key and value matrices. In the end, everything is added and packed together and the output is just the same as described above. This is a way of expanding the model to be able to include more and more complicated and subtle information about the input sequences.
 GPT-3 uses 96 attention heads in each multi-head attention layer. Along with that, GPT-3 (the largest version) consists of 96 decoders stacked on top of each other where the output from each decoder layer serves as the input to the next decoder layer.
 
 
-#### Decoding
+#### **Decoding**
 When the original input has gone through the attention blocks the last step is a simple feed-forward neural network. I will not go in to detail about this step.
 But just imagine that we are doing some final processing and adding a little bit more information before we are done processing the input. 
 
@@ -181,10 +178,14 @@ This is a preferred way of predicting during training because it generates more 
 
 
 ### Back to ChatGPT
-Now that you have some more information about GPT-3, the underlying model of ChatGPT, lets move on to chatGPT. The building of ChatGPT can be broken down
+<figure>
+    <img src="/assets/images/rlfh_chatgpt.png" alt="rlfh">
+    <figcaption><em>Description of how ChatGPT was built from <a href="https://openai.com/blog/chatgpt/">https://openai.com/blog/chatgpt/</a> </em>.</figcaption>
+</figure>  
+Now that you have some more information about GPT-3, the underlying model of ChatGPT, lets move on to ChatGPT. The building of ChatGPT can be broken down
 into three parts: 
 
-1) Generative pre-training.
+1) Generative pre-training (GPT-3)
 
 2) Supervised fine-tuning.
 
@@ -195,53 +196,67 @@ We have actually already covered that part, it's GPT-3! The problem is that GPT-
 trained to generatE human-like responses in a conversational setting.. But even though GPT-3 is not suited for our purpose it has huge amounts of knowledge about language that
 we want to use. This is where the second part comes in, supervised fine-tuning.
 
-#### Supervised fine-tuning
+#### **Supervised fine-tuning**
 Supervised learning is when you train a model using a labelled data set. This means that you can compare the output of the model to the actual answer and based
-on the difference between the models output and the actual answer, the model can be adjusted to perform better next time. In this case chatGPT needs to be trained to hold
+on the difference between the models output and the actual answer, the model can be adjusted to perform better next time. In this case ChatGPT needs to be trained to hold
 conversations, so the data consists of user prompts together with responses (labels). The labelled data was created by humans playing the role of both user and and an ideal version of ChatGPT.
 These conversations are then aggregated in to a data set where each training example consists of a particular conversation history paired together with the next ideal response (label).
 
-So, chatGPT is presented with the input-output pairs (conversation-response) and is trained to predict the response given the conversation.
+So, ChatGPT is presented with the input-output pairs (conversation-response) and is trained to predict the response given the conversation.
 This process is repeated many times and for every conversation it is exposed to, the model will get better and better at predicting responses.
-To be a little more specific, every time chatGPT produces a response it is compared to the ideal response (label) and a score is computed. This score can be seen
-as the numerical difference between the response and the label. The objective with training chatGPT is to minimize this difference. This is what learning through training refers to.
+To be a little more specific, every time ChatGPT produces a response it is compared to the ideal response (label) and a score is computed. This score can be seen
+as the numerical difference between the response and the label. The objective with training ChatGPT is to minimize this difference. This is what learning through training refers to.
 The input to our model needs to go through several steps before output (think about embedding, self-attention, feed-forward etc...) in each of these steps there are
 weights that we multiply with our input as it goes along the model (think about $$W_{e}$$, $$W_{q}$$, $$W_{k}$$, and $$W_{v}$$). These weights are often initialized randomly and then learned
 through training meaning that during training we update the weights such that the models responses gets closer closer to the labels. This is done through something called **backpropagation**,
 which I won't be covering here. When the training is completed (i.e when the model has been exposed to all the labelled data) the models weights will be fine-tuned to generate responses.
 
 
-#### Reinforcement Learning from Human Feedback 
+#### **Reinforcement Learning from Human Feedback** 
+The previous step fine-tuned ChatGPT to hold conversations and generate human like responses. However, these conversations are based on the training data that the human labellers produced.
+This is a limitation because the model will not be very good at generating responses based on conversations outside the scope of the training data. When ChatGPT is trained it always has the ideal response 
+as a reference that it tries to mimic. The reference forces ChatGPT to stay on point and to not start getting away from the topic and produce responses that are totally off.
+However, when ChatGPT is used in practice it does not have a reference and it needs to act on its one. This will increase the likelihood of ChatGPT producing bad responses.
+Although this problem can not be totally fixed, using RLFH is a way of mitigating it.   
 
 
+So, we have our fine-tuned ChatGPT (fine-tuned GPT-3). Now, we are going to give ChatGPT a prompt and the have it generat multiple responses. For example,
+given a prompt $$p$$ we generate four responses $$a$$,$$b$$,$$c$$, and $$d$$. These four respones are then ranked by a human labeler from most preferred response
+to least preferred response. The rankings are scalar values from 1 to 7 and we can then rank the responses like this:
 
 
+$$
 
-1) Generative pre-training (GPT-3)
-Using next word predictions
-This is where we build the foundation and allow the model to learn sophisticated probabilistic dependencies between words, sentences and paragraph.
+a > b > c > d
 
-2) Supervised fine-tuning
-Alignment problem, the previous step is designed to complete user input sentence, not answer or explain.
+$$
 
-This done by humans acting as both the user and chatbot to provide data for the model.
+This data can then be used to train a **rewards model**. The rewards model will takes as input a prompt together with one of the generated responses and
+outputs a scalar value that determines the quality of the response for the specific prompt. Doing this enough times, we will have trained a robust rewards model
+than can, based on human preference, determine the quality of a response. 
 
-Each training example consists of a particular conversation history and the next response.
-Train the model by making it 
+Now, we will combine the fine-tuned model together with the rewards model to make ChatGPT even better at generating human like responses.
+This is done by using the following steps:
 
+1) Take a prompt.
 
-3) RLHF
-The model is further fine-tuned with reinforcement learning.
+2) Pass the prompt to ChatGPT and generate a response.
 
-1. AI trainers first have conversations with current model
-2. Then for any given model repsonse, a set of alternative responses are also sampled and a humna labeler ranks the responses
-from most to least prefered response.
+3) Pass the prompt and the response to the rewards model and generate the quality score for the response.
 
-
+4) Update ChatGPT based on the quality score.
 
 
-## What can chatGPT actually do?
-ChatGPT is super powerful and can really boost your performance if you know how to use it. Here is a list of stuff that chatGPT can help you with:
+The last step is a bit more complicated than just updating ChatGPT. Updating in this case means updating the weights of ChatGPT in order to minimize the loss function.
+The loss function is a function that reflects the objective of our model. In the supervised fine-tuning step, the objective was to fine-tune GPT-3 to generate human like responses in conversations,
+and this is done by minimizing the difference between ChatGPT's responses and the ideal responses. However when we have added RLFH to our training, the goal is not only to generate human-like responses, but also
+to maximize the quality of each response based on human feedback. Thus, the loss function needs to be adjusted to also incorporate the **quality score** of the response. This means that ChatGPT can adjust its weights
+to both human-like responses and quality of responses.
+
+
+## What can ChatGPT actually do?
+Now that we know a bit more about ChatGPT and how it was constructed let's look closer at what ChatGPT can do and how it can boost your performance as
+a writer or developer.
 
 ### Answer questions and follow up questions 
 Not only can it answer your questions but you can hold a conversation with it and prompt follow up questions.
@@ -254,68 +269,60 @@ Give it a text and ask it so summarize it for you. You can even specify HOW you 
 ChatGPT can help you check your text for errors and even give you tips on how you can improve your writing.
 
 ### Generate drafts and outlines 
-If you need some help getting started with your project, chatGPT can help you generate a draft or outline a suitable structure. 
+If you need some help getting started with your project, ChatGPT can help you generate a draft or outline a suitable structure. 
 
 ### Explain concepts from virtually any domain
-Even though chatGPT still has som major flaws and isn't always reliably giving accurate information, you can ask it questions about virtually any concept
+Even though ChatGPT still has som major flaws and isn't always reliably giving accurate information, you can ask it questions about virtually any concept
 (just like googling) and it try to explain it. Its a great way to get an overview or a short answer on a specific topic.
 
 ### Write code 
-Yes, chatGPT can write code! In fact, a lot of the data that chatGPT has been trained on is code. This is an awesome thing for developers as chatGPT can really help boost productivity.
-In the image below I asked chatGPT to write a Python program that sorts a list of integers and then prints them in ascending order.
+Yes, ChatGPT can write code! In fact, a lot of the data that ChatGPT has been trained on is code. This is an awesome thing for developers as ChatGPT can really help boost productivity.
+In the image below I asked ChatGPT to write a Python program that sorts a list of integers and then prints them in ascending order.
 <figure>
     <img src="/assets/images/gpt_explain_code.png" alt="write">
-    <figcaption><em>Asking chatGPT to write a python program</em>.</figcaption>
+    <figcaption><em>Asking ChatGPT to write a python program</em>.</figcaption>
 </figure>  
 
 ### Explain code 
-This is another one of chatGPT's awesome dev skills and one that I think can REALLY help boost performance for anyone working with code. Find some complicated code that you can't really understand?
-Ask chatGPT. Have you written a some code that needs a clear explanation (hint: your code should always be clearly explained). Ask chatGPT. The image below shows chatGPT explaining a function in Python.
+This is another one of ChatGPT's awesome dev skills and one that I think can REALLY help boost performance for anyone working with code. Find some complicated code that you can't really understand?
+Ask ChatGPT. Have you written a some code that needs a clear explanation (hint: your code should always be clearly explained). Ask ChatGPT. The image below shows ChatGPT explaining a function in Python.
 <figure>
     <img src="/assets/images/basic_math.png" alt="explain">
-    <figcaption><em>Asking chatGPT to write a python program</em>.</figcaption>
+    <figcaption><em>Asking ChatGPT to write a python program</em>.</figcaption>
 </figure>  
-
 
 
 
 ### Debug code 
-YES! ChatGPT can debug code. Just submit your code snippet (or program) and ask it why it's not working. It's that easy. In the image below I gave chatGPT a Python program with
+YES! ChatGPT can debug code. Just submit your code snippet (or program) and ask it why it's not working. It's that easy. In the image below I gave ChatGPT a Python program with
 a few errors and asked it to check it.
 <figure>
     <img src="/assets/images/debug_code.png" alt="debug">
-    <figcaption><em>Asking chatGPT to debug code.</em>.</figcaption>
+    <figcaption><em>Asking ChatGPT to debug code.</em>.</figcaption>
 </figure>  
 
 
+## Conclusion
+ChatGPT is an awesome conversational AI built with some really interesting and cool machine learning techniques. 
+It can be a powerful tool if you are working as a writer, developer or engineer. Systems like ChatGPT are only going to get better 
+and better and are definetely here to stay. In fact, right now OpenAI are working on GPT-4 and it will probably be released in 2023!
+However, I believe that it's important to understand the underlying concepts behind systems like ChatGPT. Understanding how these systems are built makes it easier to understand why they perform in the way that they do. Yes, it's really impressive. But it is not magic!
 
 
+I hope you enjoyed this post!
 
 
+## References:
 
 
+### Papers
+
+<a href = "https://arxiv.org/pdf/1706.03762v5.pdf">Attention Is All You Need</a> (Officical GPT-3 paper)
+
+<a href = "https://arxiv.org/pdf/2005.14165.pdf">Language Models are Few-Shot Learners</a> (Official Transformers paper)
 
 
-
-
-
-
-
-
-
-
-### What are the flaws and limitations of chatGPT?
-
-
-
-
-
-
-
-
-
-
-#### References:
+### Articles and blogs
 
 <a href="https://openai.com/blog/chatgpt/">https://openai.com/blog/chatgpt/</a>
 
@@ -324,4 +331,35 @@ a few errors and asked it to check it.
 <a href="https://kripeshadwani.com/chatgpt-explained/">https://kripeshadwani.com/chatgpt-explained/</a>
 
 <a href = "https://dugas.ch/artificial_curiosity/GPT_architecture.html">https://dugas.ch/artificial_curiosity/GPT_architecture.html</a>
+
+### Youtube
+
+<a href = "https://www.youtube.com/watch?v=VPRSBzXzavo
+">https://www.youtube.com/watch?v=VPRSBzXzavo
+</a>
+
+<a href = "https://www.youtube.com/watch?v=_MPJ3CyDokU">https://www.youtube.com/watch?v=_MPJ3CyDokU</a>
+
+<a href = "https://www.youtube.com/watch?v=HBZZS96YpaM">https://www.youtube.com/watch?v=HBZZS96YpaM</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -6,7 +6,6 @@ categories: jekyll update
 featured_image: /images/data_science.png
 
 ---
-<br/>
 Hey there! 
 
 Welcome to my personal website/blog! My name is Calvin and I'm an aspiring data scientist who loves everything related to machine learning, data science, AI, and statistics.
