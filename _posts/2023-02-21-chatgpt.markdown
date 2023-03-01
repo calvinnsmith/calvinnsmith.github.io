@@ -2,7 +2,7 @@
 layout: post
 title:  "Explaining ChatGPT"
 date:   2023-02-22 14:31:20 +0100
-categories: jekyll update
+categories: [Data Science,Machine Learning,AI]
 featured_image: /images/open_ai.png
 ---
 ChatGPT is an advanced conversational AI developed by the the company OpenAI. It launched in November 2022 and was built using
@@ -17,6 +17,14 @@ OpenAI's GPT-3 family large language model and has been fine-tuned using supervi
 - How is ChatGPT built and trained?
 
 - What are the flaws and limitations of ChatGPT? 
+
+
+## Table of Contents
+{: .no_toc}
+* TOC
+{:toc}
+
+
 
 
 ## What is ChatGPT?
@@ -75,7 +83,7 @@ So, how does GPT-3 use transformers to model language and generate text?
 
 
 
-#### **Input**
+#### Input
 
 GPT-3 is trained using **next word prediction**. It takes a sequence of words as input and then outputs the predicted next word in the sequence. 
 Since the predicted word can then be added to the sequence, the new sequence can be passed through the model again and generate a new word, and so on... 
@@ -89,7 +97,7 @@ can be represented as a one-hot vector of size 50257 (same size as the vocabular
 For example, the word "How" in the above sequence would be [0,0,0,....,1,0,0,0,...,], where the 1 would have the index 300. So, we have an input sequence which is a vector of size 2048 and each element in the vector
 is represented as a one-hot vector of size 50.257. If we stack the one-hot vectors as rows we get a matrix with 2048 rows and 50257 columns. This is the input passed to GPT-3.
 
-#### **Embedding and positional encoding** 
+#### Embedding and positional encoding
 
 The next step is creating an **embedding** of the input. The input matrix described above doesn't contain any useful information, its a sparse matrix with only ones and zeros.
 Instead we want to create some numerical representation of each token that captures all the information that our model needs to "understand" what token it has been fed and under what context.
@@ -103,7 +111,7 @@ and outputs a vector of size 12288 and if we stack all the the positional encodi
 matrix.
 
 
-#### **Attention** 
+#### Attention 
 Attention is probably the most important part of transformers and why they perform so well. The GPT-3 model uses two forms of attention, self-attention and cross-attention.
 Self-attention is the concept of determining how important each token in the sequence is relative to every other token. It is a way of allowing the model to attend to important context words
 and capture dependencies between them. This involves computing attention scores between each input token and all other tokens in the sequence.
@@ -155,13 +163,13 @@ This is where cross-attention happens. As you can see the only difference betwee
 connects to the encoder. However, GPT-3 only consists of decoders so what is the input to the cross-attention block? This part is actually not entirely clear to me yet but I
 think that the input at each step will be the output from the previous step somehow.
 
-#### **Multi-Head Attention and Decoder Layers**
+#### Multi-Head Attention and Decoder Layers
 In GPT-3 they use an attention method called Multi-Head Attention. This essentially means that the above process is just repeated lots of times in parallell with different
 query, key and value matrices. In the end, everything is added and packed together and the output is just the same as described above. This is a way of expanding the model to be able to include more and more complicated and subtle information about the input sequences.
 GPT-3 uses 96 attention heads in each multi-head attention layer. Along with that, GPT-3 (the largest version) consists of 96 decoders stacked on top of each other where the output from each decoder layer serves as the input to the next decoder layer.
 
 
-#### **Decoding**
+#### Decoding
 When the original input has gone through the attention blocks the last step is a simple feed-forward neural network. I will not go in to detail about this step.
 But just imagine that we are doing some final processing and adding a little bit more information before we are done processing the input. 
 
@@ -196,7 +204,7 @@ We have actually already covered that part, it's GPT-3! The problem is that GPT-
 trained to generatE human-like responses in a conversational setting.. But even though GPT-3 is not suited for our purpose it has huge amounts of knowledge about language that
 we want to use. This is where the second part comes in, supervised fine-tuning.
 
-#### **Supervised fine-tuning**
+#### Supervised fine-tuning
 Supervised learning is when you train a model using a labelled data set. This means that you can compare the output of the model to the actual answer and based
 on the difference between the models output and the actual answer, the model can be adjusted to perform better next time. In this case ChatGPT needs to be trained to hold
 conversations, so the data consists of user prompts together with responses (labels). The labelled data was created by humans playing the role of both user and and an ideal version of ChatGPT.
@@ -212,7 +220,7 @@ through training meaning that during training we update the weights such that th
 which I won't be covering here. When the training is completed (i.e when the model has been exposed to all the labelled data) the models weights will be fine-tuned to generate responses.
 
 
-#### **Reinforcement Learning from Human Feedback** 
+#### Reinforcement Learning from Human Feedback
 The previous step fine-tuned ChatGPT to hold conversations and generate human like responses. However, these conversations are based on the training data that the human labellers produced.
 This is a limitation because the model will not be very good at generating responses based on conversations outside the scope of the training data. When ChatGPT is trained it always has the ideal response 
 as a reference that it tries to mimic. The reference forces ChatGPT to stay on point and to not start getting away from the topic and produce responses that are totally off.

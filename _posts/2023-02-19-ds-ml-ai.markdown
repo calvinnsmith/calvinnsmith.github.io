@@ -2,11 +2,20 @@
 layout: post
 title:  "Let's talk about Data Science, Machine Learning and AI"
 date:   2023-02-15 14:31:20 +0100
-categories: jekyll update
+categories: [Data Science,Machine Learning,AI]
 featured_image: /images/ds_ml_ai.jpg
 ---
 
 In this blog post I will give a short overview of the fields of Data Science, Machine Learning and AI. I will also try to explain the key differences between the fields to help readers navigate this fascinating landscape. 
+
+## Contents
+{: .no_toc}
+* TOC
+{:toc}
+
+
+
+
 
 ## Data Science
 Data Science is an interdisciplinary field primarily combining mathematical statistics and programming to gain insights and knowledge
@@ -76,7 +85,7 @@ going to achieve AGI in a not so distant future...
 
 
 
-#### References
+## References
 
 <a href="https://en.wikipedia.org/wiki/Data_science/">https://en.wikipedia.org/wiki/Data_science</a>
 
