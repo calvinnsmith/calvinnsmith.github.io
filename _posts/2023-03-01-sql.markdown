@@ -7,7 +7,8 @@ featured_image: /images/postgres.png
 ---
 This post serves as cheat sheet for SQL syntax!
 
-
+# CONTENTS
+{: .no_toc}
 * TOC
 {:toc}
 
@@ -68,3 +69,268 @@ The ```FOREIGN KEY``` constraint tells us that values inserted in ```a2``` needs
 The ```UNIQUE``` constraint tells us that the values in ```a3``` need to be unique.
 
 The ```CHECK``` constraint tells us that values inserted in ```a1``` need to be larger than 5 and less than 10.
+
+The ```NOT NULL``` constraint can be added after defining an attribute. This prevents inserts from being NULL.
+
+### More value constraints
+Check that the value is one of the listed values:
+{% highlight sql %}
+    CHECK(a1 IN (1,2,3,4) ),
+{% endhighlight %}
+
+Compare two attributes:
+{% highlight sql %}
+    CHECK(a1 > a2),
+{% endhighlight %}
+where ```a1``` and ```a2``` are atrributes in the same table.
+
+### Default values
+
+You can add default values when creating columns:
+{% highlight sql %}
+    a1 TEXT NOT NULL DEFAULT 'hello',
+{% endhighlight %}
+This sets the default value of ```a2``` to 'hello'. When you perform inserts you can write 'DEFAULT' instead of any value.
+
+If you are working with timestamps:
+{% highlight sql %}
+    timeOfInsert TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+{% endhighlight %}
+```timeOfInsert``` will default to the time when the INSERT is executed.
+
+If you define an attribute with type ```SERIAL``` will give it a default integer (starts with 1) that increases by one for each insert:
+{% highlight sql %}
+    id SERIAL,
+{% endhighlight %}
+
+
+# INSERT
+Insert a row in a table:
+
+{% highlight sql %}
+    INSERT INTO TableName VALUES (val1,val2,val3);
+{% endhighlight %}
+
+
+Insert specific attributes:
+
+{% highlight sql %}
+    INSERT INTO TableName(a1,a2) VALUES (val1,val2);
+{% endhighlight %}
+
+# UPDATE
+Modify an existing row:
+
+{% highlight sql %}
+    UPDATE tableName SET a1 = 20 WHERE a2 = 'hello';
+{% endhighlight %}
+This changes the value of ```a1``` to 20 for all rows where ```a2 = 'hello' ```. You can have multiple attributes in the SET clause
+and condition on multiple attributes in the WHERE clause. The WHERE cluase can also be removed to change all rows.
+
+
+# DELETE
+Delete row in a table:
+{% highlight sql %}
+    DELETE FROM TableName WHERE a1 = 5 AND a3 = 'hello';
+{% endhighlight %}
+Deletes all rows where ```a1 = 5``` and ```a3 = 'hello'```. Can also use ```OR/NOT/IN``` and more.
+
+Delete all rows:
+{% highlight sql %}
+    DELETE FROM TableName;
+{% endhighlight %}
+
+# Removing a table
+{% highlight sql %}
+    DROP TABLE tableName;
+{% endhighlight %}
+
+
+# SELECT
+Assume we have the following three tables in our relational database:
+
+**Players**:
+<figure>
+    <img src="/assets/images/players.png" alt="players">
+    <figcaption><em>Players table</em>.</figcaption>
+</figure>  
+
+**Games**:
+<figure>
+    <img src="/assets/images/games.png" alt="games">
+    <figcaption><em>Games table</em>.</figcaption>
+</figure>  
+
+**Points**
+<figure>
+    <img src="/assets/images/points.png" alt="points">
+    <figcaption><em>Points table</em>.</figcaption>
+</figure>  
+
+{% highlight sql %}
+    SELECT <attributes> 
+    FROM <table> 
+    WHERE <condition on rows>;
+{% endhighlight %}
+
+Example:
+{% highlight sql %}
+    SELECT name
+    FROM Players 
+    WHERE team = 'Hawks';
+{% endhighlight %}
+Selects the name of players that play for team Hawks.
+
+## Cartesian product
+The cartesian product of two tables is every row from table A combined with every row from table B.
+
+Example: 
+
+Cartesian product of Players and Games 
+
+<figure>
+    <img src="/assets/images/cartesian.png" alt="cartesian">
+    <figcaption><em>Points table</em>.</figcaption>
+</figure>  
+
+In SQL:
+{% highlight sql %}
+    SELECT * 
+    FROM Players,Games;
+{% endhighlight %}
+Which translates to "select every row from the cartesian product of Players and Games".
+
+# INNER JOINS
+Take the cartesian product of Players and Points and then filter out the rows matching on player_id.
+{% highlight sql %}
+    SELECT name,points,game
+    FROM Players,Points
+    WHERE Players.player_id = Points.player_id; 
+{% endhighlight %}
+We can also write:
+{% highlight sql %}
+    SELECT name,points,game
+    FROM Players JOIN Points ON(Players.player_id = Points.player_id)
+    WHERE Players.player_id = Points.player_id; 
+{% endhighlight %}
+Since in this case the attribute we are joining on has the same name in both tables, we can write:
+{% highlight sql %}
+    SELECT name,points,game
+    FROM Players JOIN Points USING(player_id)
+    WHERE Players.player_id = Points.player_id; 
+{% endhighlight %}
+These queries produce the same result:
+<figure>
+    <img src="/assets/images/simple_join.png" alt="join">
+    <figcaption><em>Joining Players and Points on player_id</em>.</figcaption>
+</figure>  
+
+# NATURAL JOIN
+{% highlight sql %}
+    SELECT name,points,game
+    FROM Players NATURAL JOIN Points;
+{% endhighlight %}
+A **natural join** will automatically join on the matching columns in two tables. In this case the matching column is player_id.
+This will produce the same table as above.
+
+# OUTER JOINS
+Imagine we have these two tables in our relational database:
+
+**Employees**
+<figure>
+    <img src="/assets/images/employees.png" alt="join">
+    <figcaption><em>Employees</em>.</figcaption>
+</figure>
+**CEO**  
+<figure>
+    <img src="/assets/images/ceo.png" alt="join">
+    <figcaption><em>CEO</em>.</figcaption>
+</figure> 
+If we join on ```company``` we will lose the information about company c3 and c4 (because c3 doesn't have a CEO and c4 doesn't have any employees). If we want information about every company without losing anything we can do a **full outer join**:
+{% highlight sql %}
+    SELECT *
+    FROM Employees FULL OUTER JOIN CEO ON (Employees.company = CEO.company);
+{% endhighlight %}
+Which gives us the following:
+<figure>
+    <img src="/assets/images/full_outer.png" alt="full_outer">
+    <figcaption><em>Full outer join</em>.</figcaption>
+</figure> 
+As you can see the values that do not match on the join condition are replaced with NULL values. That is, a full outer join will give you the all the rows from the joining attribute in both tables, and replace missing values with NULL.
+
+The following query will produce the same result but without the duplicate company column:
+{% highlight sql %}
+    SELECT *
+    FROM Employees NATURAL FULL OUTER JOIN CEO;
+{% endhighlight %}
+
+# LEFT/RIGHT OUTER JOINS
+
+**LEFT JOIN**
+{% highlight sql %}
+    SELECT *
+    FROM Employees LEFT OUTER JOIN CEO ON (Employees.company = CEO.company);
+{% endhighlight %}
+<figure>
+    <img src="/assets/images/left_join.png" alt="full_outer">
+    <figcaption><em>Full outer join</em>.</figcaption>
+</figure> 
+A left/right join keeps all the rows from the left/right table and adds NULL for missing values.
+
+# SUMMARY JOINS:
+<figure>
+    <img src="/assets/images/joins.png" alt="joins">
+    <figcaption><em>Different types of JOINS</em>.</figcaption>
+</figure> 
+
+
+# SET OPERATIONS
+
+## UNION
+Union combines all rows from two queries. It also removes duplicates and uses columns names from the first table.
+{% highlight sql %}
+    (SELECT * FROM TableA)
+    UNION
+    (SELECT * FROM TableB);
+{% endhighlight %}
+Where each query must have matching columns types.
+
+## INTERSECT
+Intersect takes the intersection of two queries (all rows that appear in both).
+{% highlight sql %}
+    (SELECT * FROM TableA)
+    INTERSECT
+    (SELECT * FROM TableB)
+{% endhighlight %}
+
+
+## EXCEPT
+
+
+# ORDERING 
+
+# AGGREGATION
+
+# GROUPING
+
+# HAVING
+
+# SUBQUERIES
+
+# WITH 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
