@@ -302,23 +302,133 @@ Intersect takes the intersection of two queries (all rows that appear in both).
     INTERSECT
     (SELECT * FROM TableB)
 {% endhighlight %}
-
-
 ## EXCEPT
-
+Except removes the rows from the first table that also exist in the second table. This can be useful if you need to remove a
+subset of a table from the table itself.
+{% highlight sql %}
+    (SELECT * FROM TableA)
+    EXCEPT
+    (SELECT * FROM TableB)
+{% endhighlight %}
 
 # ORDERING 
+Ordering is used to order rows in a table or view based on one or more attributes/columns.
+{% highlight sql %}
+    SELECT *
+    FROM TableName
+    ORDER BY a1;
+{% endhighlight %}
+or
+{% highlight sql %}
+    SELECT *
+    FROM TableName
+    ORDER BY (a1,a2);
+{% endhighlight %}
+Use DESC/ASC if you want to order in descending or ascending order. DESC is the default ordering.
+
+Example:
+
+Select all the players who played in game 2 and order them by the number of points they scored:
+{% highlight sql %}
+    SELECT name,points
+    FROM Players JOIN Points USING(player_id)
+    WHERE game = 'g2'
+    ORDER BY points;
+{% endhighlight %}
+<figure>
+    <img src="/assets/images/points_g2.png" alt="joins">
+    <figcaption><em>Points scored from game 2</em>.</figcaption>
+</figure> 
 
 # AGGREGATION
+Aggregates are functions that processes groups of values together. Some common aggregate function in SQL are:
+
+```COUNT```: Counts rows. Example: How many players are the league?
+
+```AVG```: Mean of an attribute. Example: What is the average number of points scored?
+
+```SUM```: SUM of an attribute: Example: How many points has been scored in total?
+
+```MAX/MIN```: Max or min of an attribute. Example: What is the maximum/minimum number of points scored in a game?
 
 # GROUPING
+Aggregation is often used together with grouping. Grouping is used to group values based on another attribute. If we then apply
+an aggregate function to a grouped table, the function will act on each group of the data. For example, we might want to count the **average** number of points scored **per game**.
+
+Another example:
+
+Get each players total points for all games:
+
+{% highlight sql %}
+    SELECT name,SUM(points) AS total
+    FROM Players JOIN Points USING(player_id)
+    GROUP BY player_id
+    ORDER BY total;
+{% endhighlight %}
+<figure>
+    <img src="/assets/images/total_points.png" alt="joins">
+    <figcaption><em>Total points for each player</em>.</figcaption>
+</figure> 
 
 # HAVING
+If we want to exclude players that have only scored 3 or less points, we can use ```HAVING```:
+{% highlight sql %}
+    SELECT name,SUM(points) AS total
+    FROM Players JOIN Points USING(player_id)
+    GROUP BY player_id
+    HAVING total > 3
+    ORDER BY total;
+{% endhighlight %}
+<figure>
+    <img src="/assets/images/best_points.png" alt="joins">
+    <figcaption><em>Top two players based on points</em>.</figcaption>
+</figure> 
 
 # SUBQUERIES
+Subqueries are queries within queries and you can have them almost anywhere.
+
+Examples:
+
+{% highlight sql %}
+    SELECT <attributes>
+    FROM Table, (<subquery>) AS sq;
+{% endhighlight %}
+
+{% highlight sql %}
+    SELECT <attributes>
+    FROM Table
+    WHERE <attribute> < (<subquery>);
+{% endhighlight %}
+
+{% highlight sql %}
+    SELECT <attributes>, <subquery>
+    FROM Table;
+{% endhighlight %}
 
 # WITH 
+The ```WITH``` clause can be useful when building more complicated queries. 
 
+Basic structure:
+{% highlight sql %}
+    WITH <query1> AS <name1>,
+         <query2> AS <name2>,
+         <query3> AS <name3>
+    SELECT ...
+    FROM <name1>,<name2>,<name3>; 
+{% endhighlight %}
+
+It can also be used to build one column at a time:
+{% highlight sql %}
+    WITH
+        col1 AS <query>,
+        col2 AS <query>,
+        col3 AS <query>
+    SELECT <attributes>
+    FROM col1
+    NATURAL LEFT OUTER JOIN col2
+    NATURAL LEFT OUTER JOIN col3;
+{% endhighlight %}
+In this case each helper query needs to have a common attribute to join on, where the left most join needs to have all the rows that we want.
 
 
 
