@@ -47,7 +47,7 @@ datatypes in SQL but the most common ones are:
 ```DATE``` and ```TIME```: For dates and times of days independently.
 
 The ```PRIMARY KEY``` values tells us that ```a1``` is the primary key of the table. This means that we can use ```a1``` to identify individual rows in our table (the each value in ```a1``` is unique and can only be inserted once). A primary key can also
-consist of multiple attributes (columns), this is called a compound key. Remember that if you have a compound key it is the combination of all the attributes in the key that is unique, not each individual atrribute by itself!
+consist of multiple attributes (columns), this is called a compound key. Remember that if you have a compound key it is the combination of all the attributes in the key that is unique, not each individual attribute by itself!
 
 
 ### Foreign keys, unique constraints and value constraints
@@ -82,7 +82,7 @@ Compare two attributes:
 {% highlight sql %}
     CHECK(a1 > a2),
 {% endhighlight %}
-where ```a1``` and ```a2``` are atrributes in the same table.
+where ```a1``` and ```a2``` are attributes in the same table.
 
 ### Default values
 
@@ -125,7 +125,7 @@ Modify an existing row:
     UPDATE tableName SET a1 = 20 WHERE a2 = 'hello';
 {% endhighlight %}
 This changes the value of ```a1``` to 20 for all rows where ```a2 = 'hello' ```. You can have multiple attributes in the SET clause
-and condition on multiple attributes in the WHERE clause. The WHERE cluase can also be removed to change all rows.
+and condition on multiple attributes in the WHERE clause. The WHERE clause can also be removed to change all rows.
 
 
 # DELETE

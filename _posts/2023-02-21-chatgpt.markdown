@@ -6,7 +6,7 @@ categories: [Data Science,Machine Learning,AI]
 featured_image: /images/open_ai.png
 ---
 ChatGPT is an advanced conversational AI developed by the the company OpenAI. It launched in November 2022 and was built using
-OpenAI's GPT-3 family large language model and has been fine-tuned using supervised learning and reinforcement learning. In this blog post I will cover topics and try to answers questions such as:
+OpenAI's GPT-3 family of large language models and has been fine-tuned using supervised learning and reinforcement learning. In this blog post I will cover topics and try to answers questions such as:
 
 - What is ChatGPT?
 
@@ -29,13 +29,13 @@ OpenAI's GPT-3 family large language model and has been fine-tuned using supervi
 
 ## What is ChatGPT?
 You probably already have a basic idea of what ChatGPT actually is. We will be diving further into the technical details later, but for now lets keep it on a basic level.
-Let's start by asking the main charachter itself. I posed the question "What is ChatGPT?" to ChatGPT and received the following response:
+Let's start by asking the main character itself. I posed the question "What is ChatGPT?" to ChatGPT and received the following response:
 <figure>
     <img src="/assets/images/what_is_chatgpt.png" alt="what_is_chatgpt">
     <figcaption><em>Asking ChatGPT "what is ChatGPT?"</em>.</figcaption>
 </figure>  
-The answer pretty much explains the basics of ChatGPT. However, there are a few details in the answer that we will be looking closer at, escpecially
-the part of the answer that states "My responses are generated using a spohisticated algorithm that analyzes patterns and trends in human language...".
+The answer pretty much explains the basics of ChatGPT. However, there are a few details in the answer that we will be looking closer at, especially
+the part of the answer that states "My responses are generated using a sophisticated algorithm that analyzes patterns and trends in human language...".
 What does that actually mean?
 
 Anyways, for those of you who haven't already tried ChatGPT the image above reveals how it works in practice. It's just like chatting with your friend on
@@ -61,7 +61,7 @@ language models in existence. It was trained on a wide variety of natural langua
 The model is designed to be used for many different applications including translation, summarization, content generation, and more. GPT-3 was trained on 45TB of
 text data from multiple sources such as Wikipedia, books, and webpages.
 
-ChatGPT, on the other hand is a specialized language model designed specifically for conversational AI applications like chatbots and virtual assistans.
+ChatGPT, on the other hand is a specialized language model designed specifically for conversational AI applications like chatbots and virtual assistants.
 ChatGPT has a smaller number of parameter (6B) but is trained specifically on conversational data and has been fine-tuned for the task of generating natural-sounding
 dialogue in response to user input. It is designed to understand and respond to natural language queries that mimics human conversation. Further, as previously mentioned
 ChatGPT is a fine-tuned version of GPT-3. Fine-tuning is a common technique used in natural language processing, where a pre-trained language model 
@@ -125,7 +125,7 @@ of each token that are meant to capture the "meaning" of each word in a numerica
 on the other words in the sequence, and so a good language model should be able to understand contextualized meaning. This means that for every token embedding in our sequence, we want to add some information about all the other tokens in the sequence.
 Think of it kind of like "storing context" in every word embedding. This is done through matrix multiplication. The three main matrices in attention are the
 $$Q$$(query), $$K$$(key), and $$V$$ (value) matrices. The query matrix represents the information that we are looking for in the input data. We can think of it as the "questions" that we want the attention mechanism to answer. 
-The key matrix represents the "features" of the input data. We can think of it as a set of "answers" to the questions posed by the quary vector. The value matrix represents the actual "content" of the input data.
+The key matrix represents the "features" of the input data. We can think of it as a set of "answers" to the questions posed by the query vector. The value matrix represents the actual "content" of the input data.
 We can think of it as a set of "facts" that are relevant to the question posed by the query vector. The matrices are obtained as follows:
 
 $$
@@ -164,7 +164,7 @@ connects to the encoder. However, GPT-3 only consists of decoders so what is the
 think that the input at each step will be the output from the previous step somehow.
 
 #### Multi-Head Attention and Decoder Layers
-In GPT-3 they use an attention method called Multi-Head Attention. This essentially means that the above process is just repeated lots of times in parallell with different
+In GPT-3 they use an attention method called Multi-Head Attention. This essentially means that the above process is just repeated lots of times in parallel with different
 query, key and value matrices. In the end, everything is added and packed together and the output is just the same as described above. This is a way of expanding the model to be able to include more and more complicated and subtle information about the input sequences.
 GPT-3 uses 96 attention heads in each multi-head attention layer. Along with that, GPT-3 (the largest version) consists of 96 decoders stacked on top of each other where the output from each decoder layer serves as the input to the next decoder layer.
 
@@ -181,7 +181,7 @@ and we are back to the original size 2048x50257. If we pass the resulting matrix
 (which is the number of tokens in the vocabulary), we can look at each row as a probability distribution over all words in the vocabulary. In most cases, we are only interested in predicting the next word in the input sequence
 which means that we would look up the row corresponding to the first padded token. For example, given the input sequence ["How","are","you",PAD,...,PAD], we would look at the row in our output matrix corresponding to the first padded token. As mentioned, this row is a vector with 50257 probabilities, one for each token in the vocabulary.
 We can either pick the token with the highest probability as the predicted token or we could choose the top k tokens based on probability and use top-k sampling.
-For example, assume we have k = 3 and the top 3 tokens are ["?":0.14], ["today":0.05] and ["sir":0.003]. We we would convert the probabiltities so they sum to one and then sample with probability from the top 3 words.
+For example, assume we have k = 3 and the top 3 tokens are ["?":0.14], ["today":0.05] and ["sir":0.003]. We we would convert the probabilities so they sum to one and then sample with probability from the top 3 words.
 This is a preferred way of predicting during training because it generates more diverse text and prevents the model from getting stuck.
 
 
@@ -228,8 +228,8 @@ However, when ChatGPT is used in practice it does not have a reference and it ne
 Although this problem can not be totally fixed, using RLFH is a way of mitigating it.   
 
 
-So, we have our fine-tuned ChatGPT (fine-tuned GPT-3). Now, we are going to give ChatGPT a prompt and the have it generat multiple responses. For example,
-given a prompt $$p$$ we generate four responses $$a$$,$$b$$,$$c$$, and $$d$$. These four respones are then ranked by a human labeler from most preferred response
+So, we have our fine-tuned ChatGPT (fine-tuned GPT-3). Now, we are going to give ChatGPT a prompt and then have it generate multiple responses. For example,
+given a prompt $$p$$ we generate four responses $$a$$,$$b$$,$$c$$, and $$d$$. These four responses are then ranked by a human labeler from most preferred response
 to least preferred response. The rankings are scalar values from 1 to 7 and we can then rank the responses like this:
 
 
@@ -271,7 +271,7 @@ Not only can it answer your questions but you can hold a conversation with it an
 It can even admit that it has made a mistake and correct it.
 
 ### Summarize text 
-Give it a text and ask it so summarize it for you. You can even specify HOW you want the text to be summarized. For example, I might want the summary as bulletpoints or maybe I need it in a specific length.
+Give it a text and ask it so summarize it for you. You can even specify HOW you want the text to be summarized. For example, I might want the summary as bullet points or maybe I need it in a specific length.
 
 ### Proof-read text 
 ChatGPT can help you check your text for errors and even give you tips on how you can improve your writing.
@@ -313,7 +313,7 @@ a few errors and asked it to check it.
 ## Conclusion
 ChatGPT is an awesome conversational AI built with some really interesting and cool machine learning techniques. 
 It can be a powerful tool if you are working as a writer, developer or engineer. Systems like ChatGPT are only going to get better 
-and better and are definetely here to stay. In fact, right now OpenAI are working on GPT-4 and it will probably be released in 2023!
+and better and are definitely here to stay. In fact, right now OpenAI are working on GPT-4 and it will probably be released in 2023!
 However, I believe that it's important to understand the underlying concepts behind systems like ChatGPT. Understanding how these systems are built makes it easier to understand why they perform in the way that they do. Yes, it's really impressive. But it is not magic!
 
 
@@ -325,7 +325,7 @@ I hope you enjoyed this post!
 
 ### Papers
 
-<a href = "https://arxiv.org/pdf/1706.03762v5.pdf">Attention Is All You Need</a> (Officical GPT-3 paper)
+<a href = "https://arxiv.org/pdf/1706.03762v5.pdf">Attention Is All You Need</a> (Official GPT-3 paper)
 
 <a href = "https://arxiv.org/pdf/2005.14165.pdf">Language Models are Few-Shot Learners</a> (Official Transformers paper)
 
