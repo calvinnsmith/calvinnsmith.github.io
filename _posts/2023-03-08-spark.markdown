@@ -1,0 +1,222 @@
+---
+layout: post
+title:  "Using PySpark with Jupyter Notebook on Windows"
+date:   2023-02-22 14:31:20 +0100
+categories: [Data Science,Machine Learning,AI]
+featured_image: /images/pyspark.png
+---
+In this post I will give step by step guide on how set up PySpark with Jupyter Notebook on. 
+
+I recently started learning about the open-source analytics engine Apache Spark. Apache Spark is a distributed processing system
+that can be used to perform tasks on large datasets. It has become a widely popular tool for data scientists, data engineers and data analysts. If you work with Python, the interface for Apache Spark is called PySpark. When I started learning about Apache Spark and PySpark, I thought it was a bit tricky to get started. Especially when it came to actually setting up the working environment and installing all the necessary programs. It took a while for me to get everything working and I wasn't satisfied with the information available online. So, here we are! 
+
+
+## Table of Contents
+{: .no_toc}
+* TOC
+{:toc}
+
+
+
+## Overview:
+
+In order to use Apache Spark with Jupyter Notebook you need to install the following programs:
+
+- Java
+
+- Spark
+
+I am also assuming that you already have Python and Jupyter Notebook installed. I am using Anaconda for this.
+
+## Step 1: Installing Java
+
+NOTE: The only Java version that has worked for me is Java 8.
+
+- I installed Java 8 from the following link: <a href = "https://www.java.com/en/download/manual.jsp">Java 8 installation</a>.
+I used the Windows Online version.
+- Depending on where you installed Java, you might want to move it. I have my Java folder at:
+```C:\Java```
+- Next step is to add Java to your path and create an environment variable called ```JAVA_HOME```:
+
+In windows:
+
+1)  Go to Control Panel --> System and Security --> System --> Advanced System Settings --> Environment Variables.
+
+2)  Now, the following window should have opened for you:
+
+<figure>
+    <img src="/assets/images/sys_prop.png" alt="debug">
+    <figcaption>.</figcaption>
+</figure>  
+Press the ```Environment Variables...``` button.
+
+3) This should open up the next window:
+
+<figure>
+    <img src="/assets/images/env_var.png" alt="debug">
+    <figcaption></figcaption>
+</figure>
+
+Under ```System variables``` click on ```Path``` and then ```Edit...```.
+
+This will open up the following:
+<figure>
+    <img src="/assets/images/edit_path.png" alt="debug">
+    <figcaption></figcaption>
+</figure>
+Press ```New``` and then copy paste the path of your Java bin directory. As you can see in my case it is:
+
+```C:\Java\jre1.8.0_361\bin```
+
+Press ```OK```.
+
+4) Under ```User variables for Administrator``` click ```New...```
+
+<figure>
+    <img src="/assets/images/user_var.png" alt="debug">
+    <figcaption></figcaption>
+</figure>
+
+Type ```JAVA_HOME``` as Variable name and as Variable value use the same path as before, but without the ```\bin```.
+In my case it would be:
+
+```C:\Java\jre1.8.0_361```
+
+
+## Step 2: Installing Apache Spark
+
+1) Go to  <a href = "https://spark.apache.org/downloads.html">Apache Spark Installation</a> and download
+the ```.tgz``` file on the first page.
+<figure>
+    <img src="/assets/images/apache.png" alt="debug">
+    <figcaption></figcaption>
+</figure>
+
+2) Create a folder and name it ```spark``` in your home directory:
+```C:\spark```
+
+
+3) Open the downloaded ```.tgz``` file:
+
+You can do this by opening a command prompt and typing:
+
+```tar -xvzf C:\PATH_TO_FILE\file.tgz```
+
+In my case, the file would be under Downloads so it would be:
+
+```tar -xvzf C:\Users\casm\Downloads\spark-3.3.2-bin-hadoop3.tgz```
+
+4) Take the folder that has been created and move it to the spark folder:
+
+```C:\spark\spark-3.3.2-bin-hadoop3```
+
+5) Now, we are going to perform the exact same steps as we did when adding Java to our path and creating an environment variable.
+The only difference is that we are going to add the following line to our path:
+
+```C:\spark\spark-3.3.2-bin-hadoop3\bin```
+
+and add the environment variable:
+
+Variable name: ```SPARK_HOME```
+
+Variable value: ```C:\spark\spark-3.3.0-bin-hadoop3```
+
+## Step 3: Download Hadoop binary winutils.exe and put in spark folder.
+Next step is to go to:
+
+<a href = "https://github.com/steveloughran/winutils/">https://github.com/steveloughran/winutils/</a>
+
+and download the ```winutils.exe``` file from the corresponding Hadoop version that matches your spark distribution. For example, if the name of your spark folder is ```spark-3.3.2-bin-hadoop3.tgz``` you should download the ```winutils.exe``` file that exists under the ```hadoop-3.0.0/bin``` folder.
+
+Navigate to your spark folder and put the ```winutils.exe``` in it:
+
+```C:\spark\spark-3.3.2-bin-hadoop3\bin\winutils.exe```.
+
+Next, we want to create a new environment variable called ```HADOOP_HOME``` (just like ```JAVA_HOME``` and ```SPARK_HOME```),
+with the value:
+
+```C:\spark\spark-3.3.0-bin-hadoop3``` (same value as the value for ```SPARK_HOME```).
+
+## Step 4: Add PYSPARK_DRIVER_PYTHON and PYSPARK_DRIVER_PYTHON_OPTS
+Add these two environment variables:
+
+```PYSPARK_DRIVER_PYTHON``` with value ```jupyter```
+
+```PYSPARK_DRIVER_PYTHON_OPTS``` with value ```notebook```
+
+## Step 5: Install findspark and pyspark
+
+If you are using Jupyter Notebook with Anaconda then open an anaconda prompt and type:
+
+```conda install findspark```
+
+and 
+
+```conda install pyspark```
+
+
+## Step 6: Running PySpark in Jupyter Notebook
+Open up a Jupyter Notebook and run the following code:
+{% highlight python %}
+    import findspark
+    findspark.init()
+    import pyspark
+    from pyspark.sql import SparkSession
+    spark = SparkSession.builder.getOrCreate()
+
+    df = spark.sql('''select 'spark' as hello''')
+    df.show()
+{% endhighlight %}
+
+If the installation has worked correctly you should see the following output:
+<figure>
+    <img src="/assets/images/hello_spark.png" alt="debug">
+    <figcaption></figcaption>
+</figure>
+
+## Common issues
+
+Based on the problems I had when setting up everything, here are some important things that you might have missed:
+
+- Having both Spark and Java directories in the home directory. This is what you want:
+
+```C:\Java```
+
+and
+
+```C:\spark```
+
+- Having all the necessary environment variables. These are the ones you should have:
+<figure>
+    <img src="/assets/images/final_var.png" alt="debug">
+    <figcaption></figcaption>
+</figure>
+
+- Having **Java 8** installed. This was important. I initially installed the latest Java version, but it didn't work for me.
+
+- Having both Spark and Java added to your **path**. Your path should include:
+
+```C:\spark\spark-3.3.2-bin-hadoop3\bin```
+
+and 
+
+```C:\Java\jre1.8.0_361\bin```
+
+## Final remarks
+
+I hope you managed to follow along and have managed to set up PySpark in your Jupyter Notebook. Now its time to start exploring the
+power of distributed data processing! If you have any questions or remarks please feel free to send me an email.
+
+
+All the best!
+
+
+
+
+
+
+
+
+
+
+
