@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Let's talk about Data Science, Machine Learning and AI"
-date:   2023-02-15 14:31:20 +0100
+date:   2023-02-19 14:31:20 +0100
 categories: [Data Science,Machine Learning,AI]
 featured_image: /images/ds_ml_ai.jpg
 ---
