@@ -265,4 +265,9 @@ Let's say we want to create a new column ```price_range``` in our data frame whi
 If you don't want to use quantiles to cut the data you can define your own ranges using ```pd.cut()``` instead.
 
 
+# Thank you for reading!
+I hope you enjoyed this post and that you might have learned a thing or two. 
+If you want to further explore pandas you can download the Jupyter Notebook used to create this post below:
 
+
+<a href = "/assets/files/pandas_tutorial.ipynb">Download Notebook</a>.
