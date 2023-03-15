@@ -1,0 +1,268 @@
+---
+layout: post
+title:  "Pandas for Data Science: The Most Useful Commands"
+date:   2023-03-08 14:31:20 +0100
+categories: [Data Science]
+featured_image: /images/2023-03-13-pandas/pandas.png
+---
+Pandas is a popular python library used for data analysis and data manipulation. In this post we will go through some of the most useful 
+Pandas functions for analyzing cleaning, exploring, and manipulating data.
+
+# CONTENTS
+{: .no_toc}
+* TOC
+{:toc}
+
+# Loading data
+I will be using the Sports Car Prices data set found <a href = "https://www.kaggle.com/datasets/rkiattisak/sports-car-prices-dataset?resource=download">here</a>.
+
+
+The following code imports the ```*pandas```* library, loads the data into a data frame object and 
+then displays the first 5 rows:
+{% highlight python %}
+    
+    % import pandas
+    import pandas as pd
+
+    % load the data
+    df = pd.read_csv('sportcarprice.csv')
+
+    % show the first five rows of the data 
+    df.head()
+{% endhighlight %}
+
+<figure>
+    <img src="/assets/images/2023-03-13-pandas/dfhead.png" alt="rlfh">
+    <figcaption></figcaption>
+</figure>  
+
+
+# Size of data frame
+The size of your data frame can be found using ```df.shape```.
+{% highlight python %}
+   % size of data frame
+   df.shape 
+{% endhighlight %}
+It outputs a tuple with two values. The first value is the number of rows in the data frame and 
+the second value is the number of columns in the data frame.
+<figure>
+    <img src="/assets/images/2023-03-13-pandas/dfshape.png" alt="rlfh">
+    <figcaption></figcaption>
+</figure>  
+
+# Getting column names
+The ```df.columns``` command will show you the names of all the columns in your data frame.
+{% highlight python %}
+   % size of data frame
+   df.columns 
+{% endhighlight %}
+<figure>
+    <img src="/assets/images/2023-03-13-pandas/dfcolumns.png" alt="rlfh">
+    <figcaption></figcaption>
+</figure>  
+
+# Checking data types
+The ```df.dtypes``` returns the data type of each column in your data frame:
+{% highlight python %}
+   % data types
+   df.dtypes
+{% endhighlight %}
+<figure>
+    <img src="/assets/images/2023-03-13-pandas/dfdtypes.png" alt="rlfh">
+    <figcaption></figcaption>
+</figure> 
+
+# Counting missing values
+Missing values are common when working with large data sets. These values need to identified and handled. To identify missing values (or NA values) we can use the ```df.isna()``` function together with the ```np.sum()``` function. The ```df.isna()``` function will return an array of the same size as our data frame, with each element being either TRUE (if the corresponding value in our data frame is NA) or FALSE (if the corresponding value in our data frame is not NA). Applying the ```np.sum()``` function will then count the number of TRUE-values for each column.
+{% highlight python %}
+   % data types
+   np.sum(df.isna())
+{% endhighlight %}
+<figure>
+    <img src="/assets/images/2023-03-13-pandas/dfisna.png" alt="rlfh">
+    <figcaption></figcaption>
+</figure> 
+
+# Removing missing values
+There are different ways of handling missing data depending on the situation. The easiest (and
+arguably the most correct) way is to simply remove the rows where there exists a missing value.
+This is done using ```df.dropna(inplace = True)```
+{% highlight python %}
+   % dropping na's
+   df.dropna(inplace = True)
+{% endhighlight %}
+
+
+# Getting unique values in a column
+As we can see, most of the columns in the data frame are of type ```object```. The ```object``` data type allows for different data types in the same column. This can be useful in some cases but most often you want every value in each column to be of the same type. For example, if we look at the column ```Engine Size (L)``` you might think that this column should be a numeric column. However, the dataset also includes electric cars and hybrids. So, the creators of the dataset decided that if the car is electric (or hybrid) they would just write something like 'Electric' instead of the engine size. Depending on what type of further analysis we will be doing this can be handled in different ways. To start, we want to find all the values that the creators have used for this column.
+The function ```df.unique()``` will help us with this:
+ {% highlight python %}
+   % unique values
+   df['Engine Size (L)'] 
+{% endhighlight %}
+<figure>
+    <img src="/assets/images/2023-03-13-pandas/dfunique.png" alt="rlfh">
+    <figcaption></figcaption>
+</figure> 
+
+# Replacing values
+As you can see in the previous image, the creators of the data set have used multiple different annotations for electric and hybrid cars. For simplicity, we are going to replace these values with a number within a string and then transform the whole column to a numeric column. Electric cars will be given an engine size of 0 and hybrids will be assigned with its actual engine size. This can be done with ```df.replace()```. The following code is an overview of the syntax:
+{% highlight python %}
+ 
+   df.replace({column1:{value1:new1,value2:new2,...},
+   column2:{value1:new1,value2:new2,...},
+   ...})
+{% endhighlight %}
+
+where ```column``` is the name of the column that you want to replace values in, ```value``` is the value of the column that you want to replace, and ```new``` is the value that you want to replace it with. In our case, we have multiple columns that need to be updated (not just the engine size):
+{% highlight python %}
+ df.replace({
+    'Engine Size (L)':{'Electric':'0','Electric Motor':'0','Electric (tri-motor)':'0','Electric (93 kWh)':'0','Electric (100 kWh)':'0', '1.5 + Electric':'0' ,'Hybrid (4.0)':'4.0','Hybrid':'4.0','2.0 (Electric)':'0','4.0 (Hybrid)':'4.0','-':'0'},
+    'Horsepower':{'1000+':'1000','1,000+':'1000','10.000':'10000'},
+    'Torque (lb-ft)':{'-':'0','10,000+':'10000','10000+':'10000'},
+    '0-60 MPH Time (seconds)':{'< 1.9':'1.9'}},inplace = True)
+{% endhighlight %}
+
+The next problem is that some of the numbers in the data frame are written with commas separating the decimals. This will be problematic when converting our columns to numeric data types. So, we replace all commas with an empty string using the following command:
+{% highlight python %}
+ df.replace(',','',regex = True,inplace = True)
+{% endhighlight %}
+
+# Changing data types
+If you want to change the data type of a column in your data frame you can use ```df.astype()```.
+{% highlight python %}
+df.astype('colName':datatype)
+{% endhighlight %}
+where ```colName``` is the name of the column and ```datatype``` is the data type you want to change to. In our case we want to
+change the data type of multiple columns and the code for this is as follows:
+{% highlight python %}
+df = df.astype(
+{'Car Model':'string','Car Make':'string','Engine Size (L)':'float','Horsepower':'int64','Torque (lb-ft)':'int64','0-60 MPH Time (seconds)':'float','Price (in USD)':'int64'})
+{% endhighlight %}
+# Finding and filtering rows
+If we want to access specific rows or columns in our data we can use ```df.loc``` and ```df.iloc```. The difference is that
+```df.loc``` is a label based indexer and ```df.iloc``` is integer based. Here are some examples:
+{% highlight python %}
+ # Get the 10th row of our data frame:
+ df.iloc[10]
+{% endhighlight %}
+{% highlight python %}
+ df.loc[10]
+{% endhighlight %}
+{% highlight python %}
+ # Get the 10th row and the 4th column:
+ df.iloc[10,4]
+{% endhighlight %}
+{% highlight python %}
+ df.loc[10,'Horsepower']
+{% endhighlight %}
+{% highlight python %}
+ # Get the first 10 rows:
+ df.iloc[0:9]
+{% endhighlight %}
+{% highlight python %}
+ df.loc[0:9]
+{% endhighlight %}
+{% highlight python %}
+ # Get the first 10 rows and the first two columns:
+ df.iloc[0:9,0:2]
+{% endhighlight %}
+{% highlight python %}
+ df.loc[0:9,['Car Make','Car Model']]
+{% endhighlight %}
+
+{% highlight python %}
+ # Get all Porsche cars:
+ df.loc[df['Car Make'] == 'Porsche']
+{% endhighlight %}
+{% highlight python %}
+ df[df['Car Make'] == 'Porsche']
+{% endhighlight %}
+{% highlight python %}
+ # Get all Porsche cars from 2021:
+ df.loc[(df['Car Make'] == 'Porsche') & (df['Year'] == 2021)]
+{% endhighlight %}
+{% highlight python %}
+ df[(df['Car Make'] == 'Porsche') & (df['Year'] == 2021)]
+{% endhighlight %}
+{% highlight python %}
+ # Get the price of all Porsche's from 2021:
+ df.loc[(df['Car Make'] == 'Porsche') & (df['Year'] == 2021)]['Price (in USD)']
+{% endhighlight %}
+{% highlight python %}
+ df[(df['Car Make'] == 'Porsche') & (df['Year'] == 2021)]['Price (in USD)']
+{% endhighlight %}
+
+# Adding column
+Sometimes you want to create a new column in your data frame and often the new column is based on one or more of the existing
+columns:
+{% highlight python %}
+  # Adding column 'Electric' which is True if the car is electric and False otherwise
+  df['Electric'] = (df['Engine Size (L)'] == 0)
+{% endhighlight %}
+{% highlight python %}
+  # Adding column 'Price/Horsepower' which is the price (in USD) per unit of horsepower
+  df['Price/Horsepower'] = (df['Price (in USD)']/df['Horsepower'])
+{% endhighlight %}
+<figure>
+    <img src="/assets/images/2023-03-13-pandas/dfnewcol.png" alt="rlfh">
+    <figcaption></figcaption>
+</figure> 
+
+# Summary statistics
+Computing summary statistics is often a good way of getting started with your data analysis. You can use ```df.describe()``` to get summary statistics of all your numeric columns. You can also compute statistics like means and medians on individual columns, where the general syntax is
+{% highlight python %}
+ df['columnName'].func()
+{% endhighlight %}
+where ```func()``` is replaced by the summary statistic you want to compute. The most common ones are:
+- ```mean()```
+- ```median()```
+- ```std()```
+- ```min()```
+- ```max()```
+
+# Grouping
+Grouping is useful when you want to compare and calculate values based on groups in your data frame.
+Below you can see two examples of grouping:
+{% highlight python %}
+ # Select the mean price of all Porsche models 
+ df[df['Car Make'] == 'Porsche'][['Car Model','Price (in USD)']].groupby('Car Model').mean()
+{% endhighlight %}
+<figure>
+    <img src="/assets/images/2023-03-13-pandas/mean_porsche.png" alt="rlfh">
+    <figcaption></figcaption>
+</figure> 
+{% highlight python %}
+ # Mean engine size grouped by Car Make and sorted from largest to smallest
+ df[["Car Make","Engine Size (L)"]].groupby("Car Make").mean().sort_values('Engine Size (L)',ascending = False)
+{% endhighlight %}
+<figure>
+    <img src="/assets/images/2023-03-13-pandas/mean_engine.png" alt="rlfh">
+    <figcaption></figcaption>
+</figure> 
+
+# Querying
+If you are familiar with SQL then querying with pandas will come in handy. Querying in pandas is essentially
+another way of filtering rows based on some criteria. The difference is that the query is written in a single string and 
+if optimized for memory handling and efficiency. Here are some examples:
+{% highlight python %}
+# All cars with engine size (L) = 3
+df.query("`Engine Size (L)` == 3")
+
+# All cars with engine size equal5 and horsepower larger than 900
+df.query(" `Engine Size (L)` == 5 and `Horsepower`> 900")
+
+# All electric cars of models Tesla and Porsche  
+df.query(' `Electric` == True and `Car Make` in ("Tesla","Porsche")')
+{% endhighlight %}
+
+# Cutting
+Let's say we want to create a new column ```price_range``` in our data frame which divides the cars into price ranges Low, Medium and High based on the ```price (in USD)``` column. This can be done using ```pd.qcut()```:
+{% highlight python %}
+ # Creating a new column price range which separates cars into Low, Medium and High price ranges based on three quantiles
+ df['price_range'] = pd.qcut(df['Price (in USD)'],q=3,labels = ['Low','Medium','High'])
+{% endhighlight %}
+If you don't want to use quantiles to cut the data you can define your own ranges using ```pd.cut()``` instead.
+
+
+
