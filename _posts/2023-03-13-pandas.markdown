@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Pandas for Data Science: The Most Useful Commands"
-date:   2023-03-015 14:31:20 +0100
+date:   2023-03-15 14:31:20 +0100
 categories: [Data Science]
 featured_image: /images/2023-03-13-pandas/pandas.png
 ---
@@ -271,3 +271,4 @@ If you want to further explore pandas you can download the Jupyter Notebook used
 
 
 <a href = "/assets/files/pandas_tutorial.ipynb">Download Notebook</a>.
+
