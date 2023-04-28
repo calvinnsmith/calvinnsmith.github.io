@@ -5,6 +5,9 @@ date:   2023-03-23 10:31:20 +0100
 categories: [Tools]
 featured_image: /images/2023-03-23-git/git-github.png
 ---
+Welcome to the perfect beginners guide to Git and Github! :)
+
+
 Imagine you are working on a coding project for developing a website. You create a folder on your computer where all the necessary files for running the website will be stored.
 You begin the project by creating your first file and then you start coding! If you have any experience of coding you know that it can be a tedious process with lots of trial and error. Often the programs are built incrementally
 which means that bugs are likely to be introduced as you go along and it can be important to keep track of changes that you have made. Every time you make a change, the program might stop working for some reason and you might want to "go back" to the previous version. Another big part of coding is exploring new features and improving your 
@@ -27,9 +30,18 @@ by virtually every software development team on the planet. If you are looking t
 
 First of all, in order to use Git you need to <a href = "https://git-scm.com/downloads">download</a> it on your computer.
 
-After downloading Git you can either open a terminal window or a Git Bash window. It can be a good idea to configure your Git profile by adding your name and email.
-This is mostly important when collaborating on projects with other people so that you can track who has done what.
+After downloading Git you can either open a terminal window or a Git Bash window. The Git bash window comes with downloading git and you can search for it in your seatch bar. It can be a good idea to configure your Git profile by adding your name and email.
+This is mostly important when collaborating on projects with other people so that you can track who has done what:
 
+**Set username:**
+```
+git config --global user.name "Calvin Smith"
+```
+
+**Set email:**
+```
+git config --global user.email datasciencewithcalvin@gmail.com
+```
 
 
 

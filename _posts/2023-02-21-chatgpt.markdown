@@ -120,7 +120,7 @@ sequence and a set of query vectors that represent the previous words in the gen
 
 
 Attention mostly consists of linear algebra and there are three main matrices used in attention. These are the Q (query), K (key) and V (value) matrices. As of now, we have our sequence embedding matrix of size 2048x12288, let's call this 
-matrix $$ X $$. As you recall, every row in $X$ corresponds to the pre-trained embedding vector for each token in our sequence (or the pre-trained embedding vector for a pad token). These vectors are numerical representations
+matrix $$ X $$. As you recall, every row in $$ X $$ corresponds to the pre-trained embedding vector for each token in our sequence (or the pre-trained embedding vector for a pad token). These vectors are numerical representations
 of each token that are meant to capture the "meaning" of each word in a numerical form. However, we all know that meaning is dependant on context. That is, the meaning of each word in a sequence of words is in some way dependent 
 on the other words in the sequence, and so a good language model should be able to understand contextualized meaning. This means that for every token embedding in our sequence, we want to add some information about all the other tokens in the sequence.
 Think of it kind of like "storing context" in every word embedding. This is done through matrix multiplication. The three main matrices in attention are the
@@ -325,9 +325,9 @@ I hope you enjoyed this post!
 
 ### Papers
 
-<a href = "https://arxiv.org/pdf/1706.03762v5.pdf">Attention Is All You Need</a> (Official GPT-3 paper)
+<a href = "https://arxiv.org/pdf/1706.03762v5.pdf">Attention Is All You Need</a> (Official Transformers paper)
 
-<a href = "https://arxiv.org/pdf/2005.14165.pdf">Language Models are Few-Shot Learners</a> (Official Transformers paper)
+<a href = "https://arxiv.org/pdf/2005.14165.pdf">Language Models are Few-Shot Learners</a> (Official GPT-3 paper)
 
 
 ### Articles and blogs
