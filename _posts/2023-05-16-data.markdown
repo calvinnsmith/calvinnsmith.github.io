@@ -1,0 +1,172 @@
+---
+layout: post
+title:  "Data Engineering for Dummies: A summary"
+date:   2023-03-15 14:31:20 +0100
+categories: [Data Engineering]
+featured_image: /images/data_engineering.png
+---
+This post summarizes the main topics in David Baum's book "Cloud Data Engineering for Dummies" which can be downloaded
+<a href = "https://resources.snowflake.com/ebooks/cloud-data-engineering-for-dummies#main-content">here</a>.
+
+# CONTENTS
+{: .no_toc}
+* TOC
+{:toc}
+
+
+# Chapter 1: Charting the Rise of Modern Data Engineering
+
+## Understanding How Data Engineering Works
+**Data Engineering** involves a wide set of procedures tools and skill sets that control, handle and facilitate the flow of data.
+A **Data Engineer** is an expert at making data ready for production/consumption by working with multiple different systems and tools. This may include, cloud applications, a data warehouse, a data lake, streams of data from IoT sensors, other types of databases, applications, and information systems. Data Engineers makes data production ready by putting it into a usable form, often in a centralized repository or cloud data platform. They understand how to manipulate data formats, scale data systems, and enforce data quality and security. 
+
+One of the main responsibilities of a Data Engineer is building and maintaining **data pipelines** that transport data through different steps and put it into a usable state. The data engineering process encompasses the overall effort required to create data pipelines that automate the transfer of data from place to place and transform that data into a specific format for a certain type of analysis.
+
+## Reviewing the History of Data Engineering
+Extract, Transform and Load (ETL), or what is now called data engineering uses to be much simpler. There was much less data and it was usually needed at a much slower pace. Data was moved from one system to another usually in **batch mode** as a bulk data load operation. When data needed to be shared it was often moved through File Transfer Protocol (FTP), APIs and web services.
+
+ETL procedures took care of the movement of data and converted it into a common format. Often these tasks where handled by the IT department in response to specific requests from other areas of the business. 
+
+Often, the source of the data was from a small number of enterprise business applications like enterprise resource planning (ERP),
+supply chain management (SCM) and customer relationship management (CRM) systems. The destination was a data warehouse where it was loaded into highly structured tables from which it could be accessed by SQL tools. The data was predictable, manageable, and from a handful of sources. Since the data was already structured, transformation needs where straightforward and simple. This ETL process was repeated daily, weekly or monthly depending on the requirements of the business application or analytics use cases.
+
+## Explaining the Impact of New Technology Paradigms
+New technologies constantly pave the way for new types of data management and analysis. The cost of storing data has gone down significantly. A growing number of organizations are using cloud services to store, manage and process their data. The cloud offers virtually unlimited capacity and scalability.
+
+Having affordable and scalable storage options enable new types of analysis and requires new types of data engineering. With lower costs and faster computing, companies can now retain years of historical data and gradually uncover patterns and insights from that data. The questions don't even need to be known in advance. Previously, companies needed to be selective about which data they collected and stored. Now, advanced data repositories such as data lakes, data warehouses and cloud platforms allow businesses to capture the data first and ask questions later.
+
+# Chapter 2: Describing the Data Engineering Process
+Data Engineering involves ingesting, transforming, delivering and sharing data for analysis. These fundamental tasks are completed via data pipelines that automate the process in a repeatable way. 
+
+## Understanding How Modern Data Pipelines Work
+A **data pipeline** is a set of data-processing elements that move data from source to destination, and often from one format (raw) to another (analytics-ready). Most modern pipelines use three basic steps. The first step is collection, during which raw data is loaded into a repository or data platform. In the second step, transformation, the data is standardized, cleansed, mapped, or combined with data from other sources. The third step is data delivery and secure data sharing, which makes business-ready data available to other users and departments.
+
+Your data pipeline should have the following characteristics:
+
+**Scalable performance:** The ability to ingest and transform data without impacting performance or experiencing resource contention.
+
+**Extensible but based on standards:** Data Engineers should be able to choose from a variety of languages and tools. For example, some may use SQL but also want to enable extensibility with Java, Python and other languages and tools.
+
+**Batch and streaming data:** A complete data pipeline should support a range of data ingestion and integration options, including batch data loading and replication, as well as streaming ingestion and integration. 
+
+## Collecting and Ingesting Data
+There exists many types of data that can be stored in different ways, on premises and in the cloud. For example, your business may generate data from transactional applications, such as CRM data from Salesforce, or ERP data from SAP. You may also have IoT sensors that gather reading from a production line or factory floor operation. 
+
+Legacy data integration solutions are good at ingesting highly structured and batch data, but they are often too rigid to collect and ingest newer types of data, such as machine-generated data from IoT, streaming data from social media feeds, and weblog data from Internet and mobile apps. The modern approach allows you to easily and efficiently ingest all these types of data, 
+
+Data collection is time-consuming. A typical marketing department, for example, may depend on 20 different SaaS applications for online advertising, web analytics, marketing operations and so on. Coding discrete interface to collect data from all sources is a huge job, which is why most organizations use data ingestion tools to automate the process.
+
+## Transforming Data
+**Data transformation** is the process of preparing data for different kinds of consumption. It can involve **standardizing** (converting all data types to the same format), **cleansing** (resolving inconsistencies and inaccuracies), **mapping** (combining data elements from two or more data models), **augmenting** (pulling in data from other sources), and so on. 
+
+
+# Chapter 3: Mapping the Data Engineering Landscape
+As you create data pipelines, remember the ultimate goal: to turn you data into useful information such as actionable analytics for for business users and predictive models for data scientists. To do so, you must think about the journey your data will take through your data pipeline. Here are some fundamental questions to consider:
+
+- What business questions do you want to answer?
+- What types of data will you be analyzing?
+- What kinds of schema do you need to define?
+- What types of data quality problems do you have?
+- What is the acceptable latency of your data?
+- Will you transform your data as you ingest it, or maintain it in a raw state and transform it later, for specific use cases?
+
+## Working with Data Warehouses and Data Lakes
+Data engineering involves extracting data from various sources. Where will it land?
+The answer is often a data warehouse or a data lake:
+
+**Data Lakes:** Scalable repositories that can store many types of data in raw and native forms, especially for semi-structured and unstructured data. To be truly useful, they must facilitate user-friendly exploration via popular methods such as SWL, automate routine data management activities, and support a range of analytics use cases. 
+
+**Data Warehouses:** Typically ingest and store only structured data, usually defined by a relational database schema. Raw data often needs to be transformed to conform to the schema. Modern data warehouses are optimized for processing thousands or even millions of queries per day.
+
+# Chapter 4: Establishing Your Data Engineering Foundation
+Good data engineering requires a product mindset, considering data as the product, as much as it requires a specific set of tools and technologies.
+
+**DataOps:** Brings together data engineers, data scientists, business analysts and other stakeholders to apply agile best practices to the data lifecycle, from data preparation to reporting with data.
+
+1. Plan
+2. Develop
+3. Build
+4. Manage
+5. Test
+6. Release
+7. Deploy
+8. Operate
+9. Monitor
+
+DatOps needs to start with data governance as the foundation. Consider these aspects as part of your data governance practice:
+
+**Lineage tracing:** Good data governance involves tracing the lineage of your data. The lineage of data includes its origin, where it is used, who has access to it, and what changes have been made to it over time.
+
+**Data quality:** Data applications are only as good as the data.
+
+**Data catalog capabilities:** Data catalog capabilities help organize the information within your storage. A data catalog is a collection of metadata, combined with data management and search tools, that helps analysts and other data users find the data they need, serves as an inventory of available data, and provides information that helps organizations evaluate the relevance of that data for intended uses.
+
+**Data access:** Data access rules must be established to determine who can see, work with, and change the data.
+
+**Change management:** Change management utilities keep track of who accesses and changes databases and data pipelines.
+They track when changes were made, who made them, and which applications those changes affect. 
+
+# Chapter 5: Outlining Technology Requirements
+As you lay out a data architecture, select data engineering technologies, and design data pipelines, the goal is to create a data environment that not only serves your organizations's current need but also positions it for the future. To ensure you are following best practices, consider these fundamental principles:
+
+**Simplicity:** Are you choosing tools that minimize data movement and reduce the number of systems with which you need to interact?
+
+**Flexibility:** Are you creating data pipelines that are flexible rather than brittle, that uphold prevailing technology standards, and that will minimize maintenance as you deploy new data sources and workloads?
+
+**Scale:** Are your data pipelines architected to accommodate growing workloads, more use cases, and an escalating number of users? Can you scale data engineering workloads independently, and separately from analytic workloads?
+
+## Ingesting Streaming and Batch Data
+The goal of data ingestion is to create a one-to-one copy of the source data and move it to the destination platform. The cycle begins with identifying your data sources and figuring out how to ingest these sources, whether as a continuos stream or via batch/bulk loads.
+
+### Dealing with streaming data
+Streaming data includes IoT data, weblog data, and other continuos sources. The destination for this data could be a data lake. An alternative would be to ingest data from publishing/subscribing messaging services directly into a cloud data platform. Distributed publishing/subscribing messaging services represent a popular way to send and receive streaming data.
+Examples are Apache Kafka, Amazon Kinesis, Microsoft Event Hubs and Google Cloud Pub/Sub
+
+### Working with batch loads
+Batch ingestion processes are commonly used for application data such as the online transaction processing data that underlies an ERP or CRM system. The data is ingested via bulk loads and aided by data replication tools and ETL or ELT tools. Data Engineers must determine what type of analytic repository they wish to load this data into and how often to refresh the data to meet the business requirements.
+
+### Replicating existing databases
+Data replication tools are valuable for data engineering projects that involve preexisting database sources and APIs, such as structured data in a relational database or data warehouse. Typically, you will want to load that data intact, since it has already been carefully loaded. These tools can move the data while maintaining the same structure and values, producing a one-to-one copy of the source.
+
+## Transforming Data to Address Specific Business Needs
+The goal of data transformation is to integrate, cleanse, augment and model the data so the business can derive more value from it. Creating data transformations has two main phases: **design** and **execute**.
+
+### Designing transformation logic
+During the design phase of data transformation you will determine whether you will hand-code the transformations with and IDE or use a data integration tool to pull your pipeline together.
+
+To decide which approach take think about: Do you have existing transformations you want to carry forward? How much of that logic can you leverage in your new pipeline? How much flexibility are you looking for when it comes to customization?
+
+### Executing data processing
+Transformation processes require lots of compute cycles. During the processing phase, you must determine where you will run your processing engine and what performance you will require.
+
+# Chapter 6: Six Steps to Building a Modern Data Engineering Practice
+
+### 1. Start Small, Think Big
+Take a close look at the current state of data engineering within your organization. Which part of your current architecture needs to be modified or enhanced to support more robust data pipelines? What analytics initiative should you start with?
+
+### 2. Simplify Your Architecture
+Data is fundamental to the workings of the enterprise. But if you 
+want to push your data to consumers fast with limited resources, 
+you need to simplify your data architecture. Get out of the business of managing infrastructure. Help the business leaders at your organization understand a basic fact: The quickest way to deliver analytic value is to stop managing hardware and software
+
+### 3. Enlist Help from Stakeholders
+
+### 4: Don't Make Data Governance an Afterthought
+
+### 5. Maximize Efficiency with a Cloud Data Platform
+As discussed in Chapter 5, it’s often better to process data once 
+it reaches its destination, especially if that destination is a scalable cloud service. Either way, transforming data requires lots of 
+compute resources. Whenever possible, leverage the modern data 
+processing capabilities of the cloud.
+
+
+### 6. Look to the Future
+The goal of the data engineer is to move beyond serving a small 
+group of data scientists and analysts, and to empower the other 
+90 percent of workers who depend on data to do their jobs. How 
+do you get there? Adopt a product mindset. Strive to impact corporate goals connected with generating revenue, maximizing efficiency, and helping your people discover new opportunities for your organization. Think about how you can share, monetize, and exchange corporate data to create new business value.
+
+
+
+
+
